@@ -12,9 +12,13 @@
 	<body>
 		<form action ="">
 			What are you doing? <input id="thedoing" type="text"/><br/>
-			For how long? <input id="thetimer" type="text"/>
+			For how long? <input id="thetime" type="text"/>
 			<button id="gobutton" type="button">GO</button>
+			<button id="donebutton" type="button">FINISHED</button>
+			<button id="moretimebutton" type="button">MORE TIME</button>
 		</form>
+		<div id="task-list">
+		</div>
 		
 		
 		
