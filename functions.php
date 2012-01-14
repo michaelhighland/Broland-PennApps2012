@@ -95,7 +95,7 @@ function getUserHistory($uid){
 function insertUserTask($uid, $taskName, $dateTime, $targetTime, $actualTime, $complete = 0){
 	$ratio = 0; // ratio defaults to NULL
 	if ($complete) $ratio = $targetTime/$actualTime;
-	if (!$dateTime) $dateTime = date("Y-m-d"); // IS THIS CORRECT FORMAT FOR SQL???
+	if (!$dateTime) $dateTime = date('YYYY-MM-DD HH:MM:SS'); // IS THIS CORRECT FORMAT FOR SQL???
 	
 	if (!mysql_result(mysql_query(mysql_query(
 		"INSERT INTO users (`uid`, `taskName`, `dateTime`, `targetTime`, `actualTime`, `complete`, 'ratio') VALUES ($uid, $taskName, $dateTime, $targetTime, $actualTime, $complete, $ratio)")))) {
