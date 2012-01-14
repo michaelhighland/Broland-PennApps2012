@@ -11,3 +11,12 @@
 		The Body!
 	</body>
 </html>
+
+<?php
+$dbhost = 'mysql.pennapps.michaelhighland.com';
+$dbuser = 'broland';
+$dbpass = 'namaste';
+$dbname = 'broland';
+$connect = mysql_connect($dbhost, $dbuser, $dbpass) or die('Error connecting to mysql: ' . mysql_error());  
+mysql_select_db($dbname) or die('Could not select the database: ' . mysql_error());
+?>
