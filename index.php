@@ -11,42 +11,47 @@
 		<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
+		<div id="header">Intention 1.0</div>
 		<div id="above-the-fold">
-			<div id="prompt">What will you do now?</div>
-			<div id="control-surface">
-				<div id="slide-holder">
-					<div class="slide">
-						<input id="thedoing" type="text"/>
-						<button class="time-slide" type="button">NEXT</button>
-					</div>
-					<div class="slide">
-						<button class="task-slide" type="button">On second thought (go back)</button>
-						<div id="time-muncher"></div>
-						<button class="time-minus" type="button">-</button>
-						<button class="time-plus" type="button">+</button>
-						<br/>
-						<button id="gobutton" type="button">GO</button>
-					</div>
-					<div class="slide">
-						<button class="donebutton" type="button">FINISHED</button>
-						<button class="moretimebutton" type="button">MORE TIME</button>
-						<button class="task-slide" type="button">I'M DOING SOMETHING ELSE!</button>
-					</div>
-					<div class="slide">
-						Did you finish what you were doing?
-						<button class="task-slide" type="button">I'M DOING SOMETHING ELSE!</button>
-						<button class="moretimebutton" type="button">I NEED MORE TIME</button>
-						<button class="donebutton" type="button">I FINISHED!</button>
-					</div>
-				</div>	
-			</div>
+			<div id="fold-hold">
+				<div id="prompt">What will you do now?</div>
+				<div id="control-surface">
+					<div id="slide-holder">
+						<div class="slide">
+							<input id="thedoing" type="text"/><br/>
+							<button class="set-time-button" type="button">NEXT</button>
+						</div>
+						<div class="slide">
+							<div id="time-comment">How long should that take?</div>
+							<div id="time-muncher"></div>
+							<button class="time-minus-button" type="button">-</button>
+							<button class="time-plus-button" type="button">+</button>
+							<br/>
+							<button id="create-task-button" type="button">GO</button>
+							<br/>
+							<br/>
+							<button class="set-name-button" type="button">On second thought (go back)</button>
+						</div>
+						<div class="slide">
+							<div id="status"></div>
+							<button class="complete-task-button" type="button">FINISHED</button>
+							<button class="minute-plus-button" type="button">MINUTE PLUS</button>
+							<button class="replace-task-button" type="button">SAVE THIS FOR LATER, I'M DOING SOMETHING ELSE!</button>
+						</div>
+						<div class="slide">
+							<center>Are you done yet?</center>
+							<button class="replace-task-button" type="button">I'M DOING SOMETHING ELSE!</button>
+							<button class="add-time-button" type="button">I NEED MORE TIME</button>
+							<button class="complete-task-button" type="button">I FINISHED!</button>
+						</div>
+					</div>	
+				</div>
+			</div>	
+			<div>Task Queue</div>
+			<div id="task-list"> </div>
 		</div>
 		<div id="below-the-fold">
 			footer
-		</div>
-		
-		
-		<div id="task-list">
 		</div>
 		
 		
