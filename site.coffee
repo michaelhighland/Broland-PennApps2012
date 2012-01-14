@@ -3,6 +3,7 @@ randomInRange = (x,y) ->
 
 class window.Application
 	MASTER_STACK = new Array()
+	DISPLAY_TIME = 5
 		
 	constructor: ->
 		@init()
@@ -25,6 +26,7 @@ class window.Application
 				@renderList()
 				if activeTime == 0
 					alert "Time is Up!"
+					@showTaskTimeUpSlide()
 	
 	incrementActiveTime: (x) ->
 		console.log "incrementing active time by "+x
@@ -38,20 +40,73 @@ class window.Application
 	hookUp: ->
 		$("#gobutton").click =>
 			taskName = $("#thedoing").val()
-			taskTime = $("#thetime").val()
+			taskTime = $("#time-muncher").html()
 			@pushTask taskName, taskTime
 			$("#thedoing").val ""
-			$("#thetime").val ""
 			@renderList()
-		$("#donebutton").click =>
+			@showTaskActiveSlide taskName
+			
+		$(".donebutton").click =>
 			MASTER_STACK.pop()
 			@renderList()
-		$("#moretimebutton").click =>
+			if MASTER_STACK.length > 0
+				activeTask = MASTER_STACK[MASTER_STACK.length-1]
+				activeName = activeTask[0]
+				@showTaskActiveSlide activeName
+			else
+				@showTaskNameSlide()
+			
+		$(".moretimebutton").click =>
 			if MASTER_STACK.length > 0
 				@incrementActiveTime 5
 				@renderList()
+		$(".time-slide").click =>
+			@showTaskTimeSlide()
+		$(".task-slide").click =>
+			@showTaskNameSlide()
+		$(".time-plus").mousedown =>
+			@incrementDisplayTime()
+		$(".time-minus").mousedown =>
+			@decrementDisplayTime()
+		
+	incrementDisplayTime: ->
+		DISPLAY_TIME++
+		$("#time-muncher").html DISPLAY_TIME
+	decrementDisplayTime: ->
+		DISPLAY_TIME--
+		$("#time-muncher").html DISPLAY_TIME
+		
+	showTaskNameSlide: ->
+		#the first slide
+		$("#prompt").html "What will you do now?"
+		$("#slide-holder").animate
+			left: "0"
+			500
+			"easeInQuad"
 			
+	showTaskTimeSlide: ->
+		#the second slide
+		$("#time-muncher").html DISPLAY_TIME
+		$("#prompt").html "How long should that take?"
+		$("#slide-holder").animate
+			left: "-600"
+			500
+			"easeInQuad"	
+	
+	showTaskActiveSlide: (name) ->
+		#the third slide
+		$("#prompt").html name
+		$("#slide-holder").animate
+			left: "-1200"
+			500
+			"easeInQuad"
 			
+	showTaskTimeUpSlide: ->
+		$("#slide-holder").animate
+			left: "-1800"
+			500
+			"easeInQuad"
+		
 	renderList: ->
 		$("#task-list").html ""
 		if MASTER_STACK.length > 0

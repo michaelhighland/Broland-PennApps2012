@@ -5,8 +5,9 @@
     return Math.floor(Math.random() * x) + y;
   };
   window.Application = (function() {
-    var MASTER_STACK;
+    var DISPLAY_TIME, MASTER_STACK;
     MASTER_STACK = new Array();
+    DISPLAY_TIME = 5;
     function Application() {
       this.init();
       this.hookUp();
@@ -29,7 +30,8 @@
         activeTime = this.incrementActiveTime(-1);
         this.renderList();
         if (activeTime === 0) {
-          return alert("Time is Up!");
+          alert("Time is Up!");
+          return this.showTaskTimeUpSlide();
         }
       }
     };
@@ -48,22 +50,74 @@
       $("#gobutton").click(__bind(function() {
         var taskName, taskTime;
         taskName = $("#thedoing").val();
-        taskTime = $("#thetime").val();
+        taskTime = $("#time-muncher").html();
         this.pushTask(taskName, taskTime);
         $("#thedoing").val("");
-        $("#thetime").val("");
-        return this.renderList();
+        this.renderList();
+        return this.showTaskActiveSlide(taskName);
       }, this));
-      $("#donebutton").click(__bind(function() {
+      $(".donebutton").click(__bind(function() {
+        var activeName, activeTask;
         MASTER_STACK.pop();
-        return this.renderList();
+        this.renderList();
+        if (MASTER_STACK.length > 0) {
+          activeTask = MASTER_STACK[MASTER_STACK.length - 1];
+          activeName = activeTask[0];
+          return this.showTaskActiveSlide(activeName);
+        } else {
+          return this.showTaskNameSlide();
+        }
       }, this));
-      return $("#moretimebutton").click(__bind(function() {
+      $(".moretimebutton").click(__bind(function() {
         if (MASTER_STACK.length > 0) {
           this.incrementActiveTime(5);
           return this.renderList();
         }
       }, this));
+      $(".time-slide").click(__bind(function() {
+        return this.showTaskTimeSlide();
+      }, this));
+      $(".task-slide").click(__bind(function() {
+        return this.showTaskNameSlide();
+      }, this));
+      $(".time-plus").mousedown(__bind(function() {
+        return this.incrementDisplayTime();
+      }, this));
+      return $(".time-minus").mousedown(__bind(function() {
+        return this.decrementDisplayTime();
+      }, this));
+    };
+    Application.prototype.incrementDisplayTime = function() {
+      DISPLAY_TIME++;
+      return $("#time-muncher").html(DISPLAY_TIME);
+    };
+    Application.prototype.decrementDisplayTime = function() {
+      DISPLAY_TIME--;
+      return $("#time-muncher").html(DISPLAY_TIME);
+    };
+    Application.prototype.showTaskNameSlide = function() {
+      $("#prompt").html("What will you do now?");
+      return $("#slide-holder").animate({
+        left: "0"
+      }, 500, "easeInQuad");
+    };
+    Application.prototype.showTaskTimeSlide = function() {
+      $("#time-muncher").html(DISPLAY_TIME);
+      $("#prompt").html("How long should that take?");
+      return $("#slide-holder").animate({
+        left: "-600"
+      }, 500, "easeInQuad");
+    };
+    Application.prototype.showTaskActiveSlide = function(name) {
+      $("#prompt").html(name);
+      return $("#slide-holder").animate({
+        left: "-1200"
+      }, 500, "easeInQuad");
+    };
+    Application.prototype.showTaskTimeUpSlide = function() {
+      return $("#slide-holder").animate({
+        left: "-1800"
+      }, 500, "easeInQuad");
     };
     Application.prototype.renderList = function() {
       var i, _ref, _results;
