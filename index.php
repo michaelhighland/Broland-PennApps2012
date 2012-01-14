@@ -10,6 +10,14 @@
 		<link href="style.css" media="screen" rel="stylesheet" type="text/css" /> 
 	</head>
 	<body>
-		The Body!
+		<form action ="">
+			What are you doing? <input id="thedoing" type="text"/><br/>
+			For how long? <input id="thetimer" type="text"/>
+			<button id="gobutton" type="button">GO</button>
+		</form>
+		
+		
+		
+		
 	</body>
 </html>
