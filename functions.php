@@ -1,11 +1,18 @@
 <?php
 
+connectToDatabase();
+
 // this if block will be executed if there is an ajaxCall;
 // make sure the data parameters are passed using the POST protocol
 if (!empty($_GET['ajaxCall'])) { 
-        require_once ROOT . '/' . $_GET['load']; 
+		echo 'this worrrrked!';
         call_user_func_array($_GET['ajaxCall'], $_POST); 
         die(); 
+}
+
+function helloWorld() {
+	
+	echo '\n\ntest';
 }
 
 
@@ -51,19 +58,34 @@ function getUserId() {
 	return $uid;
 }
 
-function registerUser($uid, $email, $name) {
-	$registered = mysql_num_rows(mysql_query("SELECT * FROM users WHERE uid='".$uid."'"));
-	if ($registered){
-		echo 'registered';
+function ajaxRegisterUser($email, $name, $password) {
+	
+	echo $email;
+	echo $name;
+	echo $password;
+	
+	registerUser(0,0,$email, $name, $password);
+}
+
+function isRegistered($uid) {
+	$registered = mysql_num_rows(mysql_query("SELECT * FROM users WHERE uid='$uid'"));
+	return ($registered > 0);
+}
+
+function registerUser($uid = 0, $fbid = 0, $email, $name, $password = 0) {
+	
+	if (isRegistered($uid)){
+		echo 'Sorry this user is already registered.';
 	}
 	else{
-		if (!mysql_result(mysql_query("INSERT INTO 'users' ('uid','email','name') VALUES('".$uid."','".$email."','".$name."')"))){
+		$lastLogin = date('Y-m-d H:i:s'); 
+		if (!mysql_result(mysql_query("INSERT INTO users (email, name, password, lastLogin) VALUES('$fbid', '$email','$name', '$password', '$lastLogin')"))){
 			echo 'error: ';
 			echo mysql_error();	
 		}
 	}
-	$date = date("Y-m-d"); 
-		mysql_query("UPDATE users SET last_login='".$date."' WHERE uid='".$uid."'");
+	
+	mysql_query("UPDATE users SET last_login='$date' WHERE uid='$uid'");
 }
 
 // returns name of logged in user, otherwise 0
@@ -92,15 +114,21 @@ function getUserHistory($uid){
 	return $htmlString;
 }
 
-function insertUserTask($uid, $taskName, $dateTime, $targetTime, $actualTime, $complete = 0){
-	$ratio = 0; // ratio defaults to NULL
+function insertUserTask($uid, $taskName, $dateTime, $targetTime, $actualTime, $complete = 0) {
+	$ratio = 0.0; // ratio defaults to NULL
 	if ($complete) $ratio = $targetTime/$actualTime;
-	if (!$dateTime) $dateTime = date('YYYY-MM-DD HH:MM:SS'); // IS THIS CORRECT FORMAT FOR SQL???
+	if (!$dateTime) $dateTime = date('Y-m-d H:i:s'); // IS THIS CORRECT FORMAT FOR SQL???
 	
-	if (!mysql_result(mysql_query(mysql_query(
-		"INSERT INTO users (`uid`, `taskName`, `dateTime`, `targetTime`, `actualTime`, `complete`, 'ratio') VALUES ($uid, $taskName, $dateTime, $targetTime, $actualTime, $complete, $ratio)")))) {
+	if (!mysql_result(mysql_query(
+		"INSERT INTO users (uid, taskName, dateTime, targetTime, actualTime, complete, ratio) 
+		VALUES ('$uid', '$taskName', '$dateTime', '$targetTime', '$actualTime', '$complete', '$ratio')"
+		))) {
+			
 		echo 'error: ';
 		echo mysql_error();	
+	}
+	else { 
+		echo 'Great Success!';
 	}
 }
 
