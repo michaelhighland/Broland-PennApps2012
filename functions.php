@@ -5,13 +5,11 @@ connectToDatabase();
 // this if block will be executed if there is an ajaxCall;
 // make sure the data parameters are passed using the POST protocol
 if (!empty($_GET['ajaxCall'])) { 
-		echo 'this worrrrked!';
         call_user_func_array($_GET['ajaxCall'], $_POST); 
         die(); 
 }
 
 function helloWorld() {
-	
 	echo '\n\ntest';
 }
 
@@ -58,12 +56,10 @@ function getUserId() {
 	return $uid;
 }
 
-function ajaxRegisterUser($email, $name, $password) {
-	
-	echo $email;
-	echo $name;
-	echo $password;
-	
+function ajaxRegisterUser($email, $name, $password) {	
+	$email = sanitize($email);
+	$name = sanitize($name);
+	$password = sanitize($password);
 	registerUser(0,0,$email, $name, $password);
 }
 
@@ -79,13 +75,17 @@ function registerUser($uid = 0, $fbid = 0, $email, $name, $password = 0) {
 	}
 	else{
 		$lastLogin = date('Y-m-d H:i:s'); 
-		if (!mysql_result(mysql_query("INSERT INTO users (email, name, password, lastLogin) VALUES('$fbid', '$email','$name', '$password', '$lastLogin')"))){
+		if (!mysql_query("INSERT INTO users (email, name, password, lastLogin) VALUES('$email','$name', '$password', '$lastLogin')")){
 			echo 'error: ';
 			echo mysql_error();	
 		}
+		else {
+			echo "<h1>Registered User!</h1>";
+			echo $email . "<br/>";
+			echo $name . "<br/>";
+			echo $password . "<br/>";
+		}
 	}
-	
-	mysql_query("UPDATE users SET last_login='$date' WHERE uid='$uid'");
 }
 
 // returns name of logged in user, otherwise 0
@@ -96,14 +96,19 @@ function loggedInUserName() {
 }
 
 // returns whether login has been successful
-function logIn($email, $password) {
+function loginUser($email, $password) {
+	$email = sanitize($email);
+	$password = sanitize($password);
+	$user = mysql_fetch_object(mysql_query("SELECT * FROM users WHERE email='$email'"));
+	if ($user->password != $password) return 0;
 	
+	return $user->name;
 }
 
 
 
 function getUserHistory($uid){
-	$tasksArray = mysql_query("SELECT * FROM tasks WHERE uid='".$uid."'");
+	$tasksArray = mysql_query("SELECT * FROM tasks WHERE uid='$uid'");
 	
 	$htmlString = '';
 	while ($tasks = mysql_fetch_object($tasksArray)) {
@@ -119,16 +124,16 @@ function insertUserTask($uid, $taskName, $dateTime, $targetTime, $actualTime, $c
 	if ($complete) $ratio = $targetTime/$actualTime;
 	if (!$dateTime) $dateTime = date('Y-m-d H:i:s'); // IS THIS CORRECT FORMAT FOR SQL???
 	
-	if (!mysql_result(mysql_query(
-		"INSERT INTO users (uid, taskName, dateTime, targetTime, actualTime, complete, ratio) 
+	if (!mysql_query(
+		"INSERT INTO tasks (uid, taskName, dateTime, targetTime, actualTime, complete, ratio) 
 		VALUES ('$uid', '$taskName', '$dateTime', '$targetTime', '$actualTime', '$complete', '$ratio')"
-		))) {
+		)) {
 			
 		echo 'error: ';
 		echo mysql_error();	
 	}
 	else { 
-		echo 'Great Success!';
+		echo '<h1>Successfully inserted task!</h1> Great Success!';
 	}
 }
 
