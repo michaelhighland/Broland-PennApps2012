@@ -208,8 +208,4 @@ class window.Application
 			opacity -= 0.15
 			opacity = Math.max 0, opacity
 			
-		
-			
-		
-	
 $ -> new Application
