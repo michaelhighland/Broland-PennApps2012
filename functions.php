@@ -9,10 +9,6 @@ if (!empty($_GET['ajaxCall'])) {
         die(); 
 }
 
-function helloWorld() {
-	echo '\n\ntest';
-}
-
 
 function connectToDatabase() {
 	$dbhost = 'mysql.pennapps.michaelhighland.com';
