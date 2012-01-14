@@ -8,6 +8,7 @@ class window.Application
 		@init()
 		
 	init: ->
-		alert "hello world"
+		alert "hello world again"
+		
 		
 $ -> new Application
