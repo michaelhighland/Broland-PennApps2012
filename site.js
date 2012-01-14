@@ -10,7 +10,7 @@
       this.init();
     }
     Application.prototype.init = function() {
-      return alert("hello world again");
+      return alert("hello world");
     };
     return Application;
   })();
