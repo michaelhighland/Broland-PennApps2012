@@ -11,7 +11,12 @@
 		<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
-		<div id="header"><span class="logo">Intention</span></div>
+		<div id="header">
+			<div id="logo">Intention</div>
+			
+			<div id="welcome">Welcome Broland! <!--><button class="white logout">logout</button>--></div>
+			<div class="clear"></div>
+		</div>
 		<div class="wrap">
 			<div id="above-the-fold">
 				<div id="fold-hold">

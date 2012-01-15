@@ -23,7 +23,7 @@ body
 	
 #above-the-fold
 	margin: auto
-	width: 800px
+	width: 700px
 	height: 1000px
 	overflow: hidden
 	position: relative
@@ -60,7 +60,7 @@ body
 	
 
 #control-surface
-	width: 600px
+	width: 700px
 	margin: auto
 	height: 300px
 	overflow: hidden
@@ -68,12 +68,12 @@ body
 	
 #slide-holder
 	height: 300px
-	width: 2400px
+	width: 2800px
 	position: absolute
 	top: 0px
 	left: 0px
 	.slide
-		width: 600px
+		width: 700px
 		float: left
 		height: 300px
 		text-align: center
@@ -113,9 +113,26 @@ h3
 	margin-top: 10px
 	margin-bottom: 20px
 	text-transform: uppercase
+	
+h4
+	font-size: 12px
+	font-family: 'Montserrat', sans-serif
+	letter-spacing: 1px
+	color: #333
+	text-align: left
+	margin-top: 0px
+	margin-bottom: 0px
+	text-transform: uppercase
+
+h5
+	font-family: Georgia, sans-serif
+	font-style: normal
+	font-size: 20px
+	text-align: left
+	margin-top: 10px
 
 
-span.logo
+#logo
 	font-size: 10px
 	font-family: 'Montserrat', sans-serif
 	letter-spacing: 2px
@@ -125,11 +142,48 @@ span.logo
 	margin-left: 10px
 	text-transform: uppercase
 	+text-shadow(rgba(black, .9) 0px -1px 0px)
+	float: left
+	
+#welcome
+	float: right
+	font-family: Georgia, serif
+	color: white
+	+text-shadow(rgba(black, .9) 0px -1px 0px)
+	font-size: 10px
+	font-style: italic
+	font-weight: bold
+	line-height: 30px
+	margin-right: 15px
 	
 .clear
 	clear: both
 	
-// BUTTONS
+
+#time-stats
+	float: left
+	width: 360px
+	margin-right: 60px
+
+#elapsed-time
+	font-family: Georgia, serif
+	font-size: 140px
+	text-align: left
+	+text-shadow(rgba(white,.8) 0 1px 0px)
+	margin-bottom: 50px
+	
+#midtask-options
+	float: right
+	width: 235px
+
+#time-stats-left
+	float: left
+	width: 140px
+
+#time-stats-right
+	float: right
+	width: 140px
+	
+
 button
 	display: inline-block
 	vertical-align baseline
@@ -221,6 +275,20 @@ button:active, input[type="submit"].button:active
 	margin-left: 65px
 	top: 205px
 	z-index: 1
+
+.midtask
+	width: 230px
+	margin: 15px auto
+	font-size: 24px
+	line-height: 31px
+
+.logout
+	font-size: 8px
+	text-transform: uppercase
+	padding: .25em
+	margin-top: 5px
+	margin-left: 3px
+
 
 .white
 	color: #333
