@@ -166,9 +166,9 @@ class window.Application
 	outputHistory: (task) ->
 		historyEntry = "<li>"
 		historyEntry += "<span class='history-date'>"+task.dateTime+"</span>"+task.taskName
-		historyEntry +=	"<span class='history-elapsed'>"+task.elapsedTime+"</span>"
+		historyEntry +=	"<span class='history-elapsed'>"+@secondsToTimeString(parseInt task.actualTime)+"</span>"
 		historyEntry +=	"<span class='history-slash'>/</span>"
-		historyEntry += "<span class='history-target'>"+task.targetTime+"</span>"
+		historyEntry += "<span class='history-target'>"+@secondsToTimeString(parseInt task.targetTime)+"</span>"
 		historyEntry += "<span class='history-ratio'>"+task.ratio+"</span>"
 		historyEntry +=	"</li>"
 		$("#history-list").append historyEntry
@@ -237,6 +237,7 @@ class window.Application
 		@updateDBTaskComplete()
 		MASTER_STACK.pop()
 		@renderList()
+		@renderHistory()
 		## refresh new tiem
 		if MASTER_STACK.length > 0
 			if @getActiveTime() == 0
