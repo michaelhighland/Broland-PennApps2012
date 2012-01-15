@@ -25,7 +25,8 @@
       console.log("Initializaed Intention 1.0");
       loopTime = 1000 / SPEED_SCALE;
       interval = setInterval("Application.prototype.tick()", loopTime);
-      return this.initStackFromDB();
+      this.initStackFromDB();
+      return this.renderHistory();
     };
     Application.prototype.primeFoldSize = function() {
       $("#above-the-fold").height($(window).height() - FOOTER_OVERLAP);
@@ -133,7 +134,7 @@
     };
     Application.prototype.initStackFromDB = function() {
       return $.ajax({
-			url: 'scripts/functions.php?ajaxCall=retreiveOpenTasks',
+			url: 'scripts/functions.php?ajaxCall=getOpenTasks',
 			dataType: 'json',
 			data: {
 				uid : 33333, 
@@ -147,6 +148,36 @@
 			},
 			type: 'POST'
 		});;
+    };
+    Application.prototype.renderHistory = function() {
+      return $.ajax({
+			url: 'scripts/functions.php?ajaxCall=getHistory',
+			dataType: 'json',
+			data: {
+				uid : 33333, 
+			},
+			success: function(data){ 
+				Application.prototype.unpackHistory(data);
+			},
+			error: function(xhr,err) {
+				alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				alert("responseText: "+xhr.responseText);
+			},
+			type: 'POST'
+		});;
+    };
+    Application.prototype.unpackHistory = function(data) {
+      var tasks, _i, _len, _results;
+      $("#below-the-fold").html("");
+      _results = [];
+      for (_i = 0, _len = data.length; _i < _len; _i++) {
+        tasks = data[_i];
+        _results.push(this.outputHistory(tasks));
+      }
+      return _results;
+    };
+    Application.prototype.outputHistory = function(task) {
+      return $("#below-the-fold").append("<li>" + task.taskName + "</li>");
     };
     Application.prototype.parseStackData = function(data) {
       var tasks, _i, _len;

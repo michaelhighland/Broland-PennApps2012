@@ -160,8 +160,17 @@ function completeTask($id, $elapsed, $remaining) {
 	}
 }
 
-function retreiveOpenTasks($id) {
+function getOpenTasks($id) {
 	$result = mysql_query("SELECT * FROM tasks WHERE uid='$id' AND complete = 0");
+	$searchResultMap=array();
+	while ($rowArray=mysql_fetch_array($result,MYSQL_ASSOC)){
+		$searchResultMap[]=$rowArray;
+	}
+	echo json_encode($searchResultMap);
+}
+
+function getHistory($id) {
+	$result = mysql_query("SELECT * FROM tasks WHERE uid='$id' AND complete = 1");
 	$searchResultMap=array();
 	while ($rowArray=mysql_fetch_array($result,MYSQL_ASSOC)){
 		$searchResultMap[]=$rowArray;

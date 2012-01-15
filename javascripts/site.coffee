@@ -29,6 +29,7 @@ class window.Application
 		loopTime = 1000/SPEED_SCALE
 		interval = `setInterval("Application.prototype.tick()", loopTime)`
 		@initStackFromDB()
+		@renderHistory()
 	primeFoldSize: ->
 		# Resize on init
 		$("#above-the-fold").height($(window).height()-FOOTER_OVERLAP)
@@ -126,7 +127,7 @@ class window.Application
 		
 	initStackFromDB: ->
 		`$.ajax({
-			url: 'scripts/functions.php?ajaxCall=retreiveOpenTasks',
+			url: 'scripts/functions.php?ajaxCall=getOpenTasks',
 			dataType: 'json',
 			data: {
 				uid : 33333, 
@@ -140,6 +141,30 @@ class window.Application
 			},
 			type: 'POST'
 		});`
+		
+	renderHistory: ->
+		`$.ajax({
+			url: 'scripts/functions.php?ajaxCall=getHistory',
+			dataType: 'json',
+			data: {
+				uid : 33333, 
+			},
+			success: function(data){ 
+				Application.prototype.unpackHistory(data);
+			},
+			error: function(xhr,err) {
+				alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				alert("responseText: "+xhr.responseText);
+			},
+			type: 'POST'
+		});`
+		
+	unpackHistory: (data) ->
+		$("#below-the-fold").html ""
+		@outputHistory tasks for tasks in data	
+	
+	outputHistory: (task) ->
+		$("#below-the-fold").append "<li>"+task.taskName+"</li>"
 		
 	parseStackData: (data) ->
 		@restoreTask tasks for tasks in data
