@@ -21,7 +21,6 @@ class window.Application
 	
 	QUESTIONS = [
 		"What will you do now?",
-		"Do or do not, there is no try",
 		"Now what?",
 		"State your intention",
 		"Why are you here?"
@@ -327,13 +326,11 @@ class window.Application
 			@taskComplete()
 			
 	deployOverlay: ->
-		alert "here comes overlay"
-		$("#overlay").fadeIn 200
-		$("#overlay h1").html = @getActiveTask()
+		$("#overlay").fadeIn()
+		$("#overlay h1").html @getActiveName()
 	
 	hideOverlay: ->
-		alert "there goes overlay"
-		$("#overlay").fadeOut 200
+		$("#overlay").fadeOut()
 			
 	incrementDisplayTime: ->
 		DISPLAY_TIME++
@@ -369,10 +366,13 @@ class window.Application
 		if $("#thedoing").val()
 			$("#prompt").html ($("#thedoing").val())+"? ok."
 			$("#time-comment").html "How long will that take?"
+			$("#change-intention").fadeIn()
 		else
 			name = @getActiveName()
 			$("#prompt").html "Time to "+name
 			$("#time-comment").html "How much longer do you need?"
+			$("#change-intention").fadeOut()
+		
 		$("#slide-holder").animate
 			left: "-700"
 			500

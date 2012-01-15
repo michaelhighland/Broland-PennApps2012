@@ -39,7 +39,7 @@
 								<input id="thedoing" type="text"/>
 								<button class="set-time-button white">SET</button>
 								<div class="clear"></div>
-								<h3>be specific!</h3>
+								<h3>set an intention, be specific!</h3>
 							</div>
 							<div class="slide">
 								<h2>How long should that take?</h2>
@@ -49,7 +49,7 @@
 								<button class="time-minus-button white">-</button>
 								<button class="time-plus-button white">+</button>
 								
-								<button class="set-name-button small white">&larr; Change Intention</button>
+								<button id="change-intention" class="set-name-button small white">&larr; Change Intention</button>
 							</div>
 							<div class="slide">
 								<div id="time-stats">
