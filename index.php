@@ -32,13 +32,14 @@
 		<div class="wrap">
 			<div id="above-the-fold">
 				<div id="fold-hold">
-					<div id="prompt">What will you do now?</div>
+					<div id="prompt"></div>
 					<div id="control-surface">
 						<div id="slide-holder">
 							<div class="slide">
 								<input id="thedoing" type="text"/>
 								<button class="set-time-button white">SET</button>
 								<div class="clear"></div>
+								<h3>be specific!</h3>
 							</div>
 							<div class="slide">
 								<h2>How long should that take?</h2>
@@ -84,6 +85,7 @@
 						</div>	
 					</div>
 				</div>	
+				<h3 id="pending-tasks">pending</h3>
 				<ul id="task-list"> </ul>
 			</div>
 		</div>
