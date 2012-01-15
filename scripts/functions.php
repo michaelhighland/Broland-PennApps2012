@@ -187,8 +187,15 @@ function getAverageRatio($id){
 	  {
 		$sum += $row['ratio'];
 		$count++;
+		$sum *= 100;
 	  }
-	echo round($sum/$count,2)."%";
+	if($count>0){
+		$sum = round($sum/$count,2);
+		$sum = min(100,$sum);
+		echo $sum."%";
+	}
+	else
+		echo "";
 }
 
 function getNumTasksCompleted($id){
@@ -203,7 +210,20 @@ function getTotalTime($id){
 	  {
 		$sum += $row['actualTime'];
 	  }
-	echo $sum;
+	$sum = $sum / 60;
+	$hours = floor($sum/60);
+	$minutes = $sum % 60;
+
+	if($hours < 10)
+		$hours = "0".$hours;
+	if($hours == 0)
+		$hours = "00";
+
+	if($minutes < 10)
+		$minutes = "0".$minutes;
+	if($minutes == 0)
+		$minutes = "00";
+	echo "$hours:$minutes";
 }
 
 function getAveragePercentAccurarcy($id){
@@ -215,14 +235,20 @@ function getAveragePercentAccurarcy($id){
 		$sum += abs($row['actualTime'] - $row['targetTime'])/$row['actualTime'];
 		$count++;
 	  }
-	$accuracy = $sum/$count;
-	$accuracy *= 100;
-	$accuracy = 100 - $accuracy;
-	$accuracy = min(100,$accuracy);
-	$accuracy = max(0,$accuracy);
-	$accuracy = round($accuracy);
+	if($count>0){
+		$accuracy = $sum/$count;
+		$accuracy *= 100;
+		$accuracy = 100 - $accuracy;
+		$accuracy = min(100,$accuracy);
+		$accuracy = max(0,$accuracy);
+		$accuracy = round($accuracy);
+		echo $accuracy."%";
+	}
+	else
+	 	echo "";
+
 	
-	echo $accuracy."%";
+	
 }
 
 ?>

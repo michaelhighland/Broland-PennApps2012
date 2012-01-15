@@ -9,8 +9,20 @@
 		<title>Intentionq</title>
 		<link href="css/style.css" media="screen" rel="stylesheet" type="text/css" /> 
 		<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+		
+		<script type='text/javascript'>
+			var GLOBAL_UID = -1;
+		</script>
+		
+		<?php
+			if(isset($_GET["uid"])){
+				echo "<script type='text/javascript'>GLOBAL_UID=".$_GET["uid"].";</script>";	
+			}
+		?>
 	</head>
 	<body>
+		
+		
 		
 		<div id="overlay">
 			<div id="overlay-wrap">
@@ -24,7 +36,7 @@
 		</div>
 		
 		<div id="header">
-			<div id="logo">Intention</div>
+			<div id="logo">Intentionq</div>
 			
 			<div id="welcome">Welcome Justin! <!--<button class="white logout">logout</button>--></div>
 			<div class="clear"></div>
@@ -91,7 +103,7 @@
 		</div>
 		<div id="below-the-fold">
 			<div id="history">
-				<h6>your history</h6>
+				<h6>my history</h6>
 				<div class="history-title">date / intention / actual time / target time / efficiency</div>
 				<ul id="history-list">
 					
@@ -101,20 +113,20 @@
 			<div id="stats">
 				<h6>my stats</h6>
 				
-				<div class="stat" id="stat-num-tasks">96</div>
+				<div class="stat" id="stat-num-tasks"></div>
 				<div class="stat-title">total intentions</div>
 				<div class="stat-description">Get Some</div>
 				
 				
-				<div class="stat" id="stat-total-time">31:29</div>
+				<div class="stat" id="stat-total-time"></div>
 				<div class="stat-title">total time spent</div>
 				<div class="stat-description">Hours:Minutes</div>
 				
-				<div class="stat" id="stat-avg-ratio">122%</div>
+				<div class="stat" id="stat-avg-ratio"></div>
 				<div class="stat-title">average efficiency rating</div>
 				<div class="stat-description">Target Time / Actual Time</div>
 				
-				<div class="stat" id="stat-avg-accuracy">88%</div>
+				<div class="stat" id="stat-avg-accuracy"></div>
 				<div class="stat-title">know thyself</div>
 				<div class="stat-description">Accuracy of Your Self Perception</div>
 				
