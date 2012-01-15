@@ -6,7 +6,7 @@
 		<script src="javascripts/jquery-1.7.1.min.js" type="text/javascript"></script>
 		<script src="javascripts/jquery.ui.core.js" type="text/javascript"></script>
 		<script src="javascripts/site.js" type="text/javascript"></script>
-		<title>Intention</title>
+		<title>Intentionq</title>
 		<link href="css/style.css" media="screen" rel="stylesheet" type="text/css" /> 
 		<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 	</head>
@@ -39,7 +39,7 @@
 								<input id="thedoing" type="text"/>
 								<button class="set-time-button orange">SET</button>
 								<div class="clear"></div>
-								<div class="catchphrase"><h3>set an intention, be specific!</h3></div>
+								<div class="catchphrase"><h3>set an intention, be specific.</h3></div>
 							</div>
 							<div class="slide">
 								<h2>How long should that take?</h2>
@@ -92,7 +92,7 @@
 		<div id="below-the-fold">
 			<div id="history">
 				<h6>your history</h6>
-				<div class="history-title">date / intention / actual time / target time / accuracy</div>
+				<div class="history-title">date / intention / actual time / target time / efficiency</div>
 				<ul id="history-list">
 					
 				
