@@ -129,7 +129,7 @@ input {
 
 /* line 47, ../sass/style.sass */
 #history {
-  padding: 30px;
+  padding: 20px 30px;
   width: 35%;
   margin-right: 20%;
   float: left;
@@ -137,7 +137,7 @@ input {
 
 /* line 53, ../sass/style.sass */
 #stats {
-  padding: 30px;
+  padding: 20px 30px;
   width: 35%;
   float: left;
 }
