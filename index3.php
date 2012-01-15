@@ -12,11 +12,13 @@
 	<body>
 		
 		<div id="overlay">
-			<div class="wrapper">
-				
-				
+			<div id="overlay-wrap">
+				<h1>did you finish?</h1>
+				<button class="white overlay-yes replace-task-button complete-task-button">YES</button>
+				<button class="white overlay-no-top add-time-button">NO, <span>I need more time</span></button>
+				<button class="white overlay-no-bottom replace-task-button">NO, <span>I'm doing something else</span></button>
+				<div class="clear"></div>
 			</div>
-			
 		</div>
 		
 		
