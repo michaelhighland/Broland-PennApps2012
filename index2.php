@@ -53,7 +53,7 @@
 			<div id="history">
 				<h6>your history</h6>
 				<ul id="history-list">
-					<li><span class="history-time">12/24/12 1:32PM</span>take a nice break</li>
+					<li><span class="history-time">12/24/12 1:32PM</span>take a nice break </li>
 					<li><span class="history-time">7/24/12 5:32PM</span>work some more</li>
 					<li><span class="history-time">8/25/73 1:32PM</span>so tired</li>
 					<li><span class="history-time">12/24/12 1:32PM</span>what is going on</li>
@@ -72,12 +72,3 @@
 		</div>
 	</body>
 </html>
-
-<?php
-$dbhost = 'mysql.pennapps.michaelhighland.com';
-$dbuser = 'broland';
-$dbpass = 'namaste';
-$dbname = 'broland';
-$connect = mysql_connect($dbhost, $dbuser, $dbpass) or die('Error connecting to mysql: ' . mysql_error());  
-mysql_select_db($dbname) or die('Could not select the database: ' . mysql_error());
-?>

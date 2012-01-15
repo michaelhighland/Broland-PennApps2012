@@ -10,6 +10,16 @@
 		<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
+		
+		<div id="overlay">
+			<div class="wrapper">
+				
+				
+			</div>
+			
+		</div>
+		
+		
 		<div id="header"><span class="logo">Intention</span></div>
 		<div class="wrap">
 			<div id="above-the-fold">
@@ -72,12 +82,3 @@
 		</div>
 	</body>
 </html>
-
-<?php
-$dbhost = 'mysql.pennapps.michaelhighland.com';
-$dbuser = 'broland';
-$dbpass = 'namaste';
-$dbname = 'broland';
-$connect = mysql_connect($dbhost, $dbuser, $dbpass) or die('Error connecting to mysql: ' . mysql_error());  
-mysql_select_db($dbname) or die('Could not select the database: ' . mysql_error());
-?>
