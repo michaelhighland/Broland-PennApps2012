@@ -39,7 +39,7 @@
 								<input id="thedoing" type="text"/>
 								<button class="set-time-button orange">SET</button>
 								<div class="clear"></div>
-								<div class="catchphrase"><h3>be specific!</h3></div>
+								<div class="catchphrase"><h3>set an intention, be specific!</h3></div>
 							</div>
 							<div class="slide">
 								<h2>How long should that take?</h2>
