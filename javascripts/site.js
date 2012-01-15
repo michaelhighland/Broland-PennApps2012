@@ -13,7 +13,7 @@
     ACTIVE = false;
     NEW_TASK = null;
     BACKUP_RATE = 30;
-    SPEED_SCALE = 10;
+    SPEED_SCALE = 1;
     UID = 33333;
     DB_ON = false;
     EXCLAMATIONS = ["Huzzah!", "Gadzooks!", "Sweet Baby Jesus!", "Time Flies!", "Cracking!"];
@@ -32,7 +32,7 @@
       } else {
         $("#below-the-fold").html("");
       }
-      loopTime = 1000 / SPEED_SCALE;
+      loopTime = 1000;
       interval = setInterval("Application.prototype.tick()", loopTime);
       this.randomizePrompt();
       this.initStackFromDB();
@@ -460,6 +460,7 @@
     };
     Application.prototype.decrementDisplayTime = function() {
       DISPLAY_TIME--;
+      DISPLAY_TIME = Math.max(DISPLAY_TIME, 1);
       return $("#time-muncher").html(DISPLAY_TIME);
     };
     Application.prototype.randomizePrompt = function() {

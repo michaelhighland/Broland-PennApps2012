@@ -9,7 +9,7 @@ class window.Application
 	ACTIVE = false
 	NEW_TASK = null
 	BACKUP_RATE = 30
-	SPEED_SCALE = 10
+	SPEED_SCALE = 1
 	UID = 33333
 	DB_ON = false
 	
@@ -43,7 +43,7 @@ class window.Application
 			$("#below-the-fold").html ""
 		
 		#this is an ugly hack!
-		loopTime = 1000/SPEED_SCALE
+		loopTime = 1000
 		interval = `setInterval("Application.prototype.tick()", loopTime)`
 		@randomizePrompt()
 		@initStackFromDB()
@@ -60,9 +60,9 @@ class window.Application
 		
 	tick: ->
 		if MASTER_STACK.length > 0
-			@incrementActiveElapsedTime 1
+			@incrementActiveElapsedTime 1 
 			if not PAUSED
-				@incrementActiveTime -1
+				@incrementActiveTime -1 
 				if @getActiveTime() <= 0
 					@setActiveTime 0
 					if not PAUSED
@@ -426,6 +426,7 @@ class window.Application
 		$("#time-muncher").html DISPLAY_TIME
 	decrementDisplayTime: ->
 		DISPLAY_TIME--
+		DISPLAY_TIME = Math.max DISPLAY_TIME,1 
 		$("#time-muncher").html DISPLAY_TIME
 		
 	randomizePrompt: ->	
