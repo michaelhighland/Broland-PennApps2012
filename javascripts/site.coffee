@@ -9,9 +9,11 @@ class window.Application
 	ACTIVE = false
 	NEW_TASK = null
 	BACKUP_RATE = 30
-	SPEED_SCALE = 10
+	SPEED_SCALE = 1
 	UID = 33333
+	DB_ON = false
 	
+
 	EXCLAMATIONS = [
 		"Huzzah!"
 		"Gadzooks!"
@@ -33,14 +35,22 @@ class window.Application
 		@primeFoldSize()
 	init: ->
 		console.log "Initializaed Intention 1.0"
+		
+		if GLOBAL_UID > 0
+			DB_ON = true
+			UID = GLOBAL_UID
+		else
+			$("#below-the-fold").html ""
+		
 		#this is an ugly hack!
-		loopTime = 1000/SPEED_SCALE
+		loopTime = 1000
 		interval = `setInterval("Application.prototype.tick()", loopTime)`
 		@randomizePrompt()
 		@initStackFromDB()
 		@renderHistory()
 		@renderList()
 		@renderStats()
+		
 	primeFoldSize: ->
 		# Resize on init
 		$("#above-the-fold").height($(window).height()-FOOTER_OVERLAP)
@@ -50,9 +60,9 @@ class window.Application
 		
 	tick: ->
 		if MASTER_STACK.length > 0
-			@incrementActiveElapsedTime 1
+			@incrementActiveElapsedTime 1 
 			if not PAUSED
-				@incrementActiveTime -1
+				@incrementActiveTime -1 
 				if @getActiveTime() <= 0
 					@setActiveTime 0
 					if not PAUSED
@@ -71,110 +81,116 @@ class window.Application
 			@setActiveTime activeTime		
 			
 	updateDBTime: ->
-		taskID = @getActiveID()
-		actualTime = @getActiveElapsedTime()
-		remainingTime = @getActiveTime()
-		console.log "Updating task ID: "+taskID+" with "+actualTime+" in seconds."
-		`$.ajax({
-			url: 'scripts/functions.php?ajaxCall=updateTaskTime',
-			data: {
-				id : taskID, 
-				elapsed: actualTime, 
-				remaining: remainingTime
-			},
-			success: function(data){ 
-				console.log("DB updated sucsess");
-			},
-			error: function(xhr,err) {
-				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-				console.log("responseText: "+xhr.responseText);
-			},
-			type: 'POST'
-		});`
+		if DB_ON
+			taskID = @getActiveID()
+			actualTime = @getActiveElapsedTime()
+			remainingTime = @getActiveTime()
+			console.log "Updating task ID: "+taskID+" with "+actualTime+" in seconds."
+			`$.ajax({
+				url: 'scripts/functions.php?ajaxCall=updateTaskTime',
+				data: {
+					id : taskID, 
+					elapsed: actualTime, 
+					remaining: remainingTime
+				},
+				success: function(data){ 
+					console.log("DB updated sucsess");
+				},
+				error: function(xhr,err) {
+					console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+					console.log("responseText: "+xhr.responseText);
+				},
+				type: 'POST'
+			});`
 		
 	updateDBNewTask: (name,time) ->
-		`$.ajax({
-			url: 'scripts/functions.php?ajaxCall=insertUserTask',
-			data: {
-				uid : UID, 
-				taskName : name, 
-				dateTime : 0, 
-				targetTime: time, 
-				actualTime : 0, 
-				remainingTime: time, 
-				complete : 0
-			},
-			success: function(data){ 
-			Application.prototype.setActiveID(data);
-			},
-			error: function(xhr,err) {
-				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-				console.log("responseText: "+xhr.responseText);
-			},
-			type: 'POST'
-		});`
+		if DB_ON
+			`$.ajax({
+				url: 'scripts/functions.php?ajaxCall=insertUserTask',
+				data: {
+					uid : UID, 
+					taskName : name, 
+					dateTime : 0, 
+					targetTime: time, 
+					actualTime : 0, 
+					remainingTime: time, 
+					complete : 0
+				},
+				success: function(data){ 
+				Application.prototype.setActiveID(data);
+				},
+				error: function(xhr,err) {
+					console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+					console.log("responseText: "+xhr.responseText);
+				},
+				type: 'POST'
+			});`
 		
 	updateDBTaskComplete: ->
-		taskID = @getActiveID()
-		elapsedTime = @getActiveElapsedTime()
-		remainingTime = @getActiveTime()
-		console.log "Completing task"
-		`$.ajax({
-			url: 'scripts/functions.php?ajaxCall=completeTask',
-			data: {
-				id : taskID, 
-				elapsed : elapsedTime,
-				remaining : remainingTime
-			},
-			success: function(data){ 
-				console.log("DB updated sucsess");
-			},
-			error: function(xhr,err) {
-				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-				console.log("responseText: "+xhr.responseText);
-			},
-			type: 'POST'
-		});`
+		if DB_ON
+			taskID = @getActiveID()
+			elapsedTime = @getActiveElapsedTime()
+			remainingTime = @getActiveTime()
+			console.log "Completing task"
+			`$.ajax({
+				url: 'scripts/functions.php?ajaxCall=completeTask',
+				data: {
+					id : taskID, 
+					elapsed : elapsedTime,
+					remaining : remainingTime
+				},
+				success: function(data){ 
+					console.log("DB updated sucsess");
+				},
+				error: function(xhr,err) {
+					console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+					console.log("responseText: "+xhr.responseText);
+				},
+				type: 'POST'
+			});`
 		
 	initStackFromDB: ->
-		`$.ajax({
-			url: 'scripts/functions.php?ajaxCall=getOpenTasks',
-			dataType: 'json',
-			data: {
-				uid : UID, 
-			},
-			success: function(data){ 
-				Application.prototype.parseStackData(data);
-			},
-			error: function(xhr,err) {
-				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-				console.log("responseText: "+xhr.responseText);
-			},
-			type: 'POST'
-		});`
+		if DB_ON
+			`$.ajax({
+				url: 'scripts/functions.php?ajaxCall=getOpenTasks',
+				dataType: 'json',
+				data: {
+					uid : UID, 
+				},
+				success: function(data){ 
+					Application.prototype.parseStackData(data);
+				},
+				error: function(xhr,err) {
+					console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+					console.log("responseText: "+xhr.responseText);
+				},
+				type: 'POST'
+			});`
 		
 	renderHistory: ->
-		`$.ajax({
-			url: 'scripts/functions.php?ajaxCall=getHistory',
-			dataType: 'json',
-			data: {
-				uid : UID, 
-			},
-			success: function(data){ 
-				Application.prototype.unpackHistory(data);
-			},
-			error: function(xhr,err) {
-				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-				console.log("responseText: "+xhr.responseText);
-			},
-			type: 'POST'
-		});`
+		if DB_ON
+			`$.ajax({
+				url: 'scripts/functions.php?ajaxCall=getHistory',
+				dataType: 'json',
+				data: {
+					uid : UID, 
+				},
+				success: function(data){ 
+					Application.prototype.unpackHistory(data);
+				},
+				error: function(xhr,err) {
+					console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+					console.log("responseText: "+xhr.responseText);
+				},
+				type: 'POST'
+			});`
 		
 	renderStats: ->
-		@outputAverageRatio()
-		@outputNumTasks()
-		@outputTotalTime()
-		@outputAverageAccuracy()
+		if DB_ON
+			@outputAverageRatio()
+			@outputNumTasks()
+			@outputTotalTime()
+			@outputAverageAccuracy()
 		
 	outputAverageRatio: ->
 		`$.ajax({
@@ -254,14 +270,15 @@ class window.Application
 		else
 			finalDate += " AM"
 	
-		magicRatio = (Math.round(task.ratio*100))/100
+		magicRatio = (Math.round(task.ratio*100))
+		magicRatio = Math.min(100,magicRatio)
 		
 		historyEntry = "<li>"
 		historyEntry += "<span class='history-date'>"+finalDate+"</span>"+task.taskName
 		historyEntry +=	"<span class='history-elapsed'>"+@secondsToTimeString(parseInt task.actualTime)+"</span>"
 		historyEntry +=	"<span class='history-slash'>/</span>"
 		historyEntry += "<span class='history-target'>"+@secondsToTimeString(parseInt task.targetTime)+"</span>"
-		historyEntry += "<span class='history-ratio'>"+magicRatio+"</span>"
+		historyEntry += "<span class='history-ratio'>"+magicRatio+"%</span>"
 		historyEntry +=	"</li>"
 		$("#history-list").append historyEntry
 		
@@ -409,6 +426,7 @@ class window.Application
 		$("#time-muncher").html DISPLAY_TIME
 	decrementDisplayTime: ->
 		DISPLAY_TIME--
+		DISPLAY_TIME = Math.max DISPLAY_TIME,1 
 		$("#time-muncher").html DISPLAY_TIME
 		
 	randomizePrompt: ->	
