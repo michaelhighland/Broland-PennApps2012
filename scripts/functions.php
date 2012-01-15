@@ -149,8 +149,9 @@ function updateTaskTime($id, $elapsed, $remaining) {
 }
 
 function completeTask($id, $elapsed, $remaining) {
+	$dateTime = date('Y-m-d H:i:s');
 	if (!mysql_query(
-		"UPDATE tasks SET remainingTime = '$remaining', actualTime = '$elapsed', ratio = (actualTime/targetTime), complete = '1' WHERE id = '$id'"
+		"UPDATE tasks SET dateTime = '$dateTime', remainingTime = '$remaining', actualTime = '$elapsed', ratio = (actualTime/targetTime), complete = '1' WHERE id = '$id'"
 		)) {		
 		echo 'error: ';
 		echo mysql_error();	
@@ -170,7 +171,7 @@ function getOpenTasks($id) {
 }
 
 function getHistory($id) {
-	$result = mysql_query("SELECT * FROM tasks WHERE uid='$id' AND complete = 1");
+	$result = mysql_query("SELECT * FROM tasks WHERE uid='$id' AND complete = 1 ORDER BY dateTime DESC LIMIT 0,10");
 	$searchResultMap=array();
 	while ($rowArray=mysql_fetch_array($result,MYSQL_ASSOC)){
 		$searchResultMap[]=$rowArray;

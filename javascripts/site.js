@@ -5,7 +5,7 @@
     return Math.floor(Math.random() * x) + y;
   };
   window.Application = (function() {
-    var ACTIVE, BACKUP_RATE, DISPLAY_TIME, EXCLAMATIONS, FOOTER_OVERLAP, MASTER_STACK, NEW_TASK, PAUSED, SPEED_SCALE;
+    var ACTIVE, BACKUP_RATE, DISPLAY_TIME, EXCLAMATIONS, FOOTER_OVERLAP, MASTER_STACK, NEW_TASK, PAUSED, QUESTIONS, SPEED_SCALE;
     MASTER_STACK = new Array();
     DISPLAY_TIME = 10;
     FOOTER_OVERLAP = 50;
@@ -13,8 +13,9 @@
     ACTIVE = false;
     NEW_TASK = null;
     BACKUP_RATE = 30;
-    SPEED_SCALE = 30;
+    SPEED_SCALE = 10;
     EXCLAMATIONS = ["Huzzah!", "Gadzooks!", "Sweet Baby Jesus!", "Time Flies!", "Cracking!"];
+    QUESTIONS = ["What will you do now?", "Do or do not, there is no try", "Now what?", "State your intention", "Why are you here?"];
     function Application() {
       this.init();
       this.primeButtons();
@@ -25,8 +26,10 @@
       console.log("Initializaed Intention 1.0");
       loopTime = 1000 / SPEED_SCALE;
       interval = setInterval("Application.prototype.tick()", loopTime);
+      this.randomizePrompt();
       this.initStackFromDB();
-      return this.renderHistory();
+      this.renderHistory();
+      return this.renderList();
     };
     Application.prototype.primeFoldSize = function() {
       $("#above-the-fold").height($(window).height() - FOOTER_OVERLAP);
@@ -46,7 +49,7 @@
               PAUSED = true;
               theword = EXCLAMATIONS[Math.floor(Math.random() * EXCLAMATIONS.length)];
               alert(theword + " It's time to check in.");
-              this.showTaskExpiredSlide();
+              this.deployOverlay();
             }
           }
         }
@@ -81,8 +84,8 @@
 				console.log("DB updated sucsess");
 			},
 			error: function(xhr,err) {
-				alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-				alert("responseText: "+xhr.responseText);
+				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				console.log("responseText: "+xhr.responseText);
 			},
 			type: 'POST'
 		});;
@@ -103,8 +106,8 @@
 			Application.prototype.setActiveID(data);
 			},
 			error: function(xhr,err) {
-				alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-				alert("responseText: "+xhr.responseText);
+				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				console.log("responseText: "+xhr.responseText);
 			},
 			type: 'POST'
 		});;
@@ -126,8 +129,8 @@
 				console.log("DB updated sucsess");
 			},
 			error: function(xhr,err) {
-				alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-				alert("responseText: "+xhr.responseText);
+				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				console.log("responseText: "+xhr.responseText);
 			},
 			type: 'POST'
 		});;
@@ -143,8 +146,8 @@
 				Application.prototype.parseStackData(data);
 			},
 			error: function(xhr,err) {
-				alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-				alert("responseText: "+xhr.responseText);
+				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				console.log("responseText: "+xhr.responseText);
 			},
 			type: 'POST'
 		});;
@@ -160,8 +163,8 @@
 				Application.prototype.unpackHistory(data);
 			},
 			error: function(xhr,err) {
-				alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-				alert("responseText: "+xhr.responseText);
+				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				console.log("responseText: "+xhr.responseText);
 			},
 			type: 'POST'
 		});;
@@ -177,9 +180,22 @@
       return _results;
     };
     Application.prototype.outputHistory = function(task) {
-      var historyEntry;
+      var finalDate, historyEntry, prettyDate, weekday;
+      prettyDate = new Date(task.dateTime);
+      weekday = ['SUN', 'MON', 'TUE', 'WED', 'THR', 'FRI', 'SAT'];
+      finalDate = weekday[prettyDate.getDay()];
+      finalDate += " " + (prettyDate.getHours() % 12) + ":";
+      if (prettyDate.getMinutes() < 10) {
+        finalDate += "0";
+      }
+      finalDate += prettyDate.getMinutes();
+      if (prettyDate.getHours() > 12) {
+        finalDate += " PM";
+      } else {
+        finalDate += " AM";
+      }
       historyEntry = "<li>";
-      historyEntry += "<span class='history-date'>" + task.dateTime + "</span>" + task.taskName;
+      historyEntry += "<span class='history-date'>" + finalDate + "</span>" + task.taskName;
       historyEntry += "<span class='history-elapsed'>" + this.secondsToTimeString(parseInt(task.actualTime)) + "</span>";
       historyEntry += "<span class='history-slash'>/</span>";
       historyEntry += "<span class='history-target'>" + this.secondsToTimeString(parseInt(task.targetTime)) + "</span>";
@@ -201,7 +217,7 @@
     };
     Application.prototype.restoreTask = function(task) {
       var thisTask;
-      thisTask = [task.taskName, parseInt(task.remainingTime), parseInt(task.actualTime), parseInt(task.id)];
+      thisTask = [task.taskName, parseInt(task.remainingTime), parseInt(task.actualTime), parseInt(task.id), parseInt(task.targetTime)];
       console.log(thisTask);
       MASTER_STACK.push(thisTask);
       return this.renderList();
@@ -322,17 +338,29 @@
         }
       }, this));
       $(".add-time-button").click(__bind(function() {
+        this.hideOverlay();
         DISPLAY_TIME = 10;
         return this.showTaskTimeSlide();
       }, this));
       $(".replace-task-button").click(__bind(function() {
+        this.hideOverlay();
         ACTIVE = false;
         PAUSED = true;
         return this.showTaskInProgNameSlide();
       }, this));
       return $(".complete-task-button").click(__bind(function() {
+        this.hideOverlay();
         return this.taskComplete();
       }, this));
+    };
+    Application.prototype.deployOverlay = function() {
+      alert("here comes overlay");
+      $("#overlay").fadeIn(200);
+      return $("#overlay h1").html = this.getActiveTask();
+    };
+    Application.prototype.hideOverlay = function() {
+      alert("there goes overlay");
+      return $("#overlay").fadeOut(200);
     };
     Application.prototype.incrementDisplayTime = function() {
       DISPLAY_TIME++;
@@ -342,8 +370,13 @@
       DISPLAY_TIME--;
       return $("#time-muncher").html(DISPLAY_TIME);
     };
+    Application.prototype.randomizePrompt = function() {
+      var theword;
+      theword = QUESTIONS[Math.floor(Math.random() * QUESTIONS.length)];
+      return $("#prompt").html(theword);
+    };
     Application.prototype.showTaskNameSlide = function() {
-      $("#prompt").html("What will you do now?");
+      this.randomizePrompt();
       return $("#slide-holder").animate({
         left: "0"
       }, 500, "easeInQuad");
@@ -377,11 +410,6 @@
         left: "-1400"
       }, 500, "easeInQuad");
     };
-    Application.prototype.showTaskExpiredSlide = function() {
-      return $("#slide-holder").animate({
-        left: "-2100"
-      }, 500, "easeInQuad");
-    };
     Application.prototype.renderList = function() {
       var i, task, _ref, _results;
       if (MASTER_STACK.length > 0) {
@@ -392,11 +420,14 @@
         $("#task-list").html("");
       }
       if (MASTER_STACK.length > 1) {
+        $("#pending-tasks").fadeIn();
         _results = [];
         for (i = _ref = MASTER_STACK.length - 2; _ref <= 0 ? i <= 0 : i >= 0; _ref <= 0 ? i++ : i--) {
           _results.push(this.renderTask(MASTER_STACK[i]));
         }
         return _results;
+      } else {
+        return $("#pending-tasks").fadeOut();
       }
     };
     Application.prototype.renderTask = function(task) {
