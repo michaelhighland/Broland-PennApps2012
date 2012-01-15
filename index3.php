@@ -79,6 +79,23 @@
 			<div id="stats">
 				<h6>my stats</h6>
 				
+				<div class="stat" id="stat-num-tasks">96</div>
+				<div class="stat-title">total intentions</div>
+				<div class="stat-description">Get Some</div>
+				
+				
+				<div class="stat" id="stat-total-time">31:29</div>
+				<div class="stat-title">total time spent</div>
+				<div class="stat-description">Hours:Minutes</div>
+				
+				<div class="stat" id="stat-avg-ratio">122%</div>
+				<div class="stat-title">average efficiency rating</div>
+				<div class="stat-description">Target Time / Actual Time</div>
+				
+				<div class="stat" id="stat-avg-accuracy">88%</div>
+				<div class="stat-title">know thyself</div>
+				<div class="stat-description">Accuracy of Your Self Perception</div>
+				
 			</div>
 			<div class="clear"></div>
 		</div>

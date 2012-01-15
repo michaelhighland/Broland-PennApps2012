@@ -26,7 +26,7 @@
 		<div id="header">
 			<div id="logo">Intention</div>
 			
-			<div id="welcome">Welcome Broland! <!--<button class="white logout">logout</button>--></div>
+			<div id="welcome">Welcome Justin! <!--<button class="white logout">logout</button>--></div>
 			<div class="clear"></div>
 		</div>
 		<div class="wrap">
@@ -37,17 +37,17 @@
 						<div id="slide-holder">
 							<div class="slide">
 								<input id="thedoing" type="text"/>
-								<button class="set-time-button white">SET</button>
+								<button class="set-time-button orange">SET</button>
 								<div class="clear"></div>
-								<h3>be specific!</h3>
+								<div class="catchphrase"><h3>be specific!</h3></div>
 							</div>
 							<div class="slide">
 								<h2>How long should that take?</h2>
 								
 								<button id="time-muncher" class="time white"></button>
 								<div id="minutes"><h3>minutes</h3></div>
-								<button class="time-minus-button white">-</button>
-								<button class="time-plus-button white">+</button>
+								<button class="time-minus-button orange">-</button>
+								<button class="time-plus-button orange">+</button>
 								
 								<button class="set-name-button small white">&larr; Change Intention</button>
 							</div>
@@ -99,6 +99,23 @@
 			</div>
 			<div id="stats">
 				<h6>my stats</h6>
+				
+				<div class="stat" id="stat-num-tasks">96</div>
+				<div class="stat-title">total intentions</div>
+				<div class="stat-description">Get Some</div>
+				
+				
+				<div class="stat" id="stat-total-time">31:29</div>
+				<div class="stat-title">total time spent</div>
+				<div class="stat-description">Hours:Minutes</div>
+				
+				<div class="stat" id="stat-avg-ratio">122%</div>
+				<div class="stat-title">average efficiency rating</div>
+				<div class="stat-description">Target Time / Actual Time</div>
+				
+				<div class="stat" id="stat-avg-accuracy">88%</div>
+				<div class="stat-title">know thyself</div>
+				<div class="stat-description">Accuracy of Your Self Perception</div>
 				
 			</div>
 			<div class="clear"></div>

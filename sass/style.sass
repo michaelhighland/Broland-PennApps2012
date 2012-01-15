@@ -26,7 +26,7 @@ input
 	
 #above-the-fold
 	margin: auto
-	width: 700px
+	width: 90%
 	height: 1000px
 	overflow: hidden
 	position: relative
@@ -41,28 +41,28 @@ input
 	width: 100%
 	background-color: #156489
 	border-top: 3px solid #0d5577
-	height: 500px
 	color: white
 	
 #history
-	padding: 20px 30px
-	width: 35%
-	margin-right: 20%
+	padding: 20px 0 20px 5%
+	width: 40%
 	float: left
 	
 #stats
-	padding: 20px 30px
-	width: 35%
-	float: left
+	padding: 20px 5% 20px 0
+	width: 40%
+	float: right
 	
 	
 #fold-hold
 	
 #task-list
 	margin: auto
-	text-align: center
-	font-family: 'Montserrat', sans-serif
-	font-size: 16px
+	li 
+		font-family: 'Montserrat', sans-serif
+		font-size: 16px
+		margin-bottom: 3px
+		text-align: center
 
 #prompt
 	font-size: 60px
@@ -99,15 +99,20 @@ input
 #thedoing
 	font-size: 40px
 	text-transform: lowercase
-	+border-left-radius(8px)
-	+border-right-radius(0px)
-	padding: 15px
+	+border-radius(8px)
+	padding: 15px 120px 15px 15px
 	+background(rgba(white, .8))
 	border: 1px solid #53bff2
 	+box-shadow(rgba(black,0.6) 0 0 3px inset)
 	color: #333
 	float: left
-	width: 450px
+	width: 510px
+	font-family: 'Montserrat', sans-serif
+	position: absolute
+	top: 50px
+	left: 50%
+	margin: 0 0 0 -315px
+	z-index: 1
 	
 
 ul#history-list li
@@ -197,6 +202,33 @@ h6
 .clear
 	clear: both
 	
+.stat
+	font-family: Georgia, serif
+	color: white
+	+text-shadow(rgba(black, .9) 0px -2px 0px)
+	font-size: 50px
+	text-align: center
+	margin-bottom: 15px
+	margin-top: 10px
+	
+.stat-title
+	font-size: 9px
+	font-family: 'Montserrat', sans-serif
+	letter-spacing: 1px
+	color: white
+	text-align: center
+	text-transform: uppercase
+	margin-bottom: 8px
+	
+.stat-description
+	font-family: Georgia, serif
+	color: white
+	+text-shadow(rgba(black, .9) 0px -1px 0px)
+	font-size: 10px
+	font-style: italic
+	font-weight: bold
+	text-align: center
+	margin-bottom: 20px
 
 #time-stats
 	float: left
@@ -252,11 +284,26 @@ button:active, input[type="submit"].button:active
 	font-weight: bold
 	float: left
 	padding: 0px
-	+border-right-radius(1em)
+	+border-right-radius(8px)
 	+border-left-radius(0px)
-	margin: 3px 0 0 -8px
-	line-height: 75px
+	margin: 0 0 0 220px
+	line-height: 77px
 	width: 120px
+	position: absolute
+	top: 50px
+	left: 50%
+	z-index: 2
+	&:active
+		position: absolute
+		top: 50px
+
+.catchphrase
+	position: absolute
+	width: 300px
+	text-align: center
+	top: 140px
+	left: 50%
+	margin-left: -150px
 	
 #minutes
 	position: absolute
@@ -280,6 +327,10 @@ button:active, input[type="submit"].button:active
 	top: 50px
 	margin-left: -75px
 	z-index: 3
+	border: solid 1px #f0c683
+	&:hover
+		border: solid 2px #eaa12d
+		+background-image(linear-gradient(#fff, #ddd))
 	
 .time-minus-button 
 	font-size: 25px
@@ -345,6 +396,19 @@ button:active, input[type="submit"].button:active
 	color: #999
 	+background-image(linear-gradient(#ddd,#fff))
 	
+.orange
+	color: #333
+	+text-shadow(rgba(white,.5) 0 1px 0px)
+	border: solid 1px #b7b7b7
+	+background-image(linear-gradient(#fff, #f0c683))
+
+.orange:hover
+	+background-image(linear-gradient(#f0c683, #f0c683))
+
+.orange:active
+	color: #999
+	+background-image(linear-gradient(#f0c683,#fff))
+	
 #overlay
 	position: fixed
 	+background(rgba(black, .8))
@@ -356,10 +420,10 @@ button:active, input[type="submit"].button:active
 	#overlay-wrap
 		width: 600px
 		position: relative
-		height: 300px
+		height: 500px
 		top: 50%
 		left: 50%
-		margin-top: -150px
+		margin-top: -250px
 		margin-left: -300px
 	h1
 		color: white
@@ -369,6 +433,7 @@ button:active, input[type="submit"].button:active
 		letter-spacing: -2px
 		text-align: center
 		text-transform: lowercase
+		margin-bottom: 30px
 	h2
 		color: white
 		+text-shadow(rgba(black, .9) 0px -1px 0px)
