@@ -6,7 +6,11 @@
   };
 
   window.Application = (function() {
+<<<<<<< Updated upstream
     var ACTIVE, BACKUP_RATE, DISPLAY_TIME, EXCLAMATIONS, FOOTER_OVERLAP, MASTER_STACK, NEW_TASK, PAUSED, QUESTIONS, SPEED_SCALE, UID;
+=======
+    var ACTIVE, BACKUP_RATE, DISPLAY_TIME, EXCLAMATIONS, FOOTER_OVERLAP, MASTER_STACK, NEW_TASK, PAUSED, SPEED_SCALE;
+>>>>>>> Stashed changes
 
     MASTER_STACK = new Array();
 
@@ -22,6 +26,7 @@
 
     BACKUP_RATE = 30;
 
+<<<<<<< Updated upstream
     SPEED_SCALE = 10;
 
     UID = 33333;
@@ -30,6 +35,12 @@
 
     QUESTIONS = ["What will you do now?", "Now what?", "State your intention", "Why are you here?"];
 
+=======
+    SPEED_SCALE = 30;
+
+    EXCLAMATIONS = ["Huzzah!", "Gadzooks!", "Sweet Baby Jesus!", "Time Flies!", "Cracking!"];
+
+>>>>>>> Stashed changes
     function Application() {
       this.init();
       this.primeButtons();
@@ -216,6 +227,7 @@
 		});;
     };
 
+<<<<<<< Updated upstream
     Application.prototype.outputNumTasks = function() {
       return $.ajax({
 			url: 'scripts/functions.php?ajaxCall=getNumTasksCompleted',
@@ -267,6 +279,8 @@
 		});;
     };
 
+=======
+>>>>>>> Stashed changes
     Application.prototype.unpackHistory = function(data) {
       var tasks, _i, _len, _results;
       $("#history-list").html("");
@@ -279,6 +293,7 @@
     };
 
     Application.prototype.outputHistory = function(task) {
+<<<<<<< Updated upstream
       var finalDate, historyEntry, magicRatio, prettyDate, weekday;
       prettyDate = new Date(task.dateTime);
       weekday = ['SUN', 'MON', 'TUE', 'WED', 'THR', 'FRI', 'SAT'];
@@ -300,6 +315,9 @@
       historyEntry += "<span class='history-ratio'>" + magicRatio + "</span>";
       historyEntry += "</li>";
       return $("#history-list").append(historyEntry);
+=======
+      return $("#below-the-fold").append("<li>" + task.taskName + "</li>");
+>>>>>>> Stashed changes
     };
 
     Application.prototype.parseStackData = function(data) {
@@ -364,12 +382,15 @@
       return activeTask[3];
     };
 
+<<<<<<< Updated upstream
     Application.prototype.getGoalTime = function() {
       var activeTask;
       activeTask = this.getActiveTask();
       return activeTask[4];
     };
 
+=======
+>>>>>>> Stashed changes
     Application.prototype.setActiveTime = function(x) {
       return MASTER_STACK[MASTER_STACK.length - 1][1] = x;
     };
@@ -449,22 +470,32 @@
         }
       });
       $(".add-time-button").click(function() {
+<<<<<<< Updated upstream
         _this.hideOverlay();
+=======
+>>>>>>> Stashed changes
         DISPLAY_TIME = 10;
         return _this.showTaskTimeSlide();
       });
       $(".replace-task-button").click(function() {
+<<<<<<< Updated upstream
         _this.hideOverlay();
+=======
+>>>>>>> Stashed changes
         ACTIVE = false;
         PAUSED = true;
         return _this.showTaskInProgNameSlide();
       });
       return $(".complete-task-button").click(function() {
+<<<<<<< Updated upstream
         _this.hideOverlay();
+=======
+>>>>>>> Stashed changes
         return _this.taskComplete();
       });
     };
 
+<<<<<<< Updated upstream
     Application.prototype.deployOverlay = function() {
       $("#overlay").fadeIn();
       return $("#overlay h1").html(this.getActiveName());
@@ -474,6 +505,8 @@
       return $("#overlay").fadeOut();
     };
 
+=======
+>>>>>>> Stashed changes
     Application.prototype.incrementDisplayTime = function() {
       DISPLAY_TIME++;
       return $("#time-muncher").html(DISPLAY_TIME);
@@ -484,12 +517,15 @@
       return $("#time-muncher").html(DISPLAY_TIME);
     };
 
+<<<<<<< Updated upstream
     Application.prototype.randomizePrompt = function() {
       var theword;
       theword = QUESTIONS[Math.floor(Math.random() * QUESTIONS.length)];
       return $("#prompt").html(theword);
     };
 
+=======
+>>>>>>> Stashed changes
     Application.prototype.showTaskNameSlide = function() {
       this.randomizePrompt();
       return $("#slide-holder").animate({
@@ -531,6 +567,15 @@
       }, 500, "easeInQuad");
     };
 
+<<<<<<< Updated upstream
+=======
+    Application.prototype.showTaskExpiredSlide = function() {
+      return $("#slide-holder").animate({
+        left: "-2100"
+      }, 500, "easeInQuad");
+    };
+
+>>>>>>> Stashed changes
     Application.prototype.renderList = function() {
       var i, task, _ref, _results;
       if (MASTER_STACK.length > 0) {
