@@ -39,10 +39,29 @@
 								<button class="set-name-button small white">&larr; Change Intention</button>
 							</div>
 							<div class="slide">
-								<div id="status"></div>
-								<button class="complete-task-button" type="button">FINISHED</button>
-								<button class="minute-plus-button" type="button">MINUTE PLUS</button>
-								<button class="replace-task-button" type="button">SAVE THIS FOR LATER, I'M DOING SOMETHING ELSE!</button>
+								<div id="time-stats">
+									<h4>Time Remaining</h4>
+									<div id="time-remaining">26:49</div>
+										
+									<div id="time-stats-left">
+										<h4>Elapsed Time</h4>
+										<h5 id="elapsed-time">35:23</h5>
+									</div>
+									<div id="time-stats-right">
+										<h4>Original Target</h4>
+										<h5 id="original-target">35:00</h5>
+									</div>	
+										
+										
+								</div>
+								
+								<div id="midtask-options">
+									<button class="complete-task-button white midtask">Finished Task</button>
+									<button class="minute-plus-button white midtask">Add Minute</button>
+									<button class="replace-task-button white midtask">Start New Task</button>
+								</div>
+
+								<div class="clear"></div>
 							</div>
 							<div class="slide">
 								<center>Are you done yet?</center>
@@ -57,8 +76,18 @@
 			</div>
 		</div>
 		<div id="below-the-fold">
-			
-			
+			<div id="history">
+				<h6>your history</h6>
+				<ul id="history-list">
+					
+				
+				</ul>
+			</div>
+			<div id="stats">
+				<h6>my stats</h6>
+				
+			</div>
+			<div class="clear"></div>
 		</div>
 		
 		

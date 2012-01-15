@@ -160,11 +160,18 @@ class window.Application
 		});`
 		
 	unpackHistory: (data) ->
-		$("#below-the-fold").html ""
+		$("#history-list").html ""
 		@outputHistory tasks for tasks in data	
-	
+		
 	outputHistory: (task) ->
-		$("#below-the-fold").append "<li>"+task.taskName+"</li>"
+		historyEntry = "<li>"
+		historyEntry += "<span class='history-date'>"+task.dateTime+"</span>"+task.taskName
+		historyEntry +=	"<span class='history-elapsed'>"+task.elapsedTime+"</span>"
+		historyEntry +=	"<span class='history-slash'>/</span>"
+		historyEntry += "<span class='history-target'>"+task.targetTime+"</span>"
+		historyEntry += "<span class='history-ratio'>"+task.ratio+"</span>"
+		historyEntry +=	"</li>"
+		$("#history-list").append historyEntry
 		
 	parseStackData: (data) ->
 		@restoreTask tasks for tasks in data
@@ -182,7 +189,8 @@ class window.Application
 	pushTask: (name,time) ->
 		console.log "Pushing new task to master array with: "+name+" for "+time+" minutes."
 		@updateDBNewTask name, time
-		thisTask = [name, time, 0, -1]
+		## [Name,ActiveTime,ElapsedTime,TaskID,TargetTime]
+		thisTask = [name, time, 0, -1, time]
 		MASTER_STACK.push(thisTask)		
 		@renderList()
 	
@@ -207,6 +215,10 @@ class window.Application
 	getActiveID: ->
 		activeTask = @getActiveTask()
 		return activeTask[3]
+		
+	getGoalTime: ->
+		activeTask = @getActiveTask()
+		return activeTask[4]
 		
 	setActiveTime: (x) ->
 		MASTER_STACK[MASTER_STACK.length-1][1] = x
@@ -344,12 +356,15 @@ class window.Application
 	renderList: ->
 		if MASTER_STACK.length > 0
 			task = @getActiveTask()
-			$("#status").html "Time Left: "+(@secondsToTimeString task[1])+" Elapsed: "+(@secondsToTimeString task[2])+" ID:"+task[3]
+			## [Name,ActiveTime,ElapsedTime,TaskID,TargetTime]
+			$("#time-remaining").html (@secondsToTimeString task[1])
+			$("#elapsed-time").html (@secondsToTimeString task[2])
+			$("#original-target").html (@secondsToTimeString task[4])
 			$("#task-list").html ""
 		if MASTER_STACK.length > 1
 			@renderTask MASTER_STACK[i] for i in [MASTER_STACK.length-2..0]
 	renderTask: (task) ->
-		$("#task-list").append "<div>"+task[0]+"</div>"
+		$("#task-list").append "<li>"+task[0]+"</li>"
 		opacity = 1.0
 		$("#task-list").children().each ->
 			$(this).css "opacity", opacity

@@ -109,7 +109,7 @@ body {
   -o-box-shadow: rgba(0, 0, 0, 0.3) 0 0 80px inset;
   box-shadow: rgba(0, 0, 0, 0.3) 0 0 80px inset;
   border-bottom: 1px solid #b7e1f5;
-  background-image: url('/images/grid.png?1326609501');
+  background-image: url('/images/grid.png?1326628386');
 }
 
 /* line 36, ../sass/style.sass */
@@ -231,7 +231,7 @@ ul#history-list li {
   text-align: center;
 }
 /* line 115, ../sass/style.sass */
-ul#history-list li .history-time {
+ul#history-list li .history-date {
   font-size: 10px;
   line-height: 24px;
   margin-right: 15px;
