@@ -9,7 +9,8 @@ class window.Application
 	ACTIVE = false
 	NEW_TASK = null
 	BACKUP_RATE = 30
-	SPEED_SCALE = 30
+	SPEED_SCALE = 10
+	UID = 33333
 	
 	EXCLAMATIONS = [
 		"Huzzah!"
@@ -17,6 +18,13 @@ class window.Application
 		"Sweet Baby Jesus!"
 		"Time Flies!"
 		"Cracking!"
+	]
+	
+	QUESTIONS = [
+		"What will you do now?",
+		"Now what?",
+		"State your intention",
+		"Why are you here?"
 	]
 		
 	constructor: ->
@@ -28,8 +36,11 @@ class window.Application
 		#this is an ugly hack!
 		loopTime = 1000/SPEED_SCALE
 		interval = `setInterval("Application.prototype.tick()", loopTime)`
+		@randomizePrompt()
 		@initStackFromDB()
 		@renderHistory()
+		@renderList()
+		@renderStats()
 	primeFoldSize: ->
 		# Resize on init
 		$("#above-the-fold").height($(window).height()-FOOTER_OVERLAP)
@@ -48,7 +59,7 @@ class window.Application
 						PAUSED = true
 						theword = EXCLAMATIONS[Math.floor(Math.random() * EXCLAMATIONS.length)]
 						alert theword+" It's time to check in."
-						@showTaskExpiredSlide()
+						@deployOverlay()
 			if @getActiveElapsedTime() % BACKUP_RATE == 0
 				@updateDBTime()
 			@renderList()
@@ -75,8 +86,8 @@ class window.Application
 				console.log("DB updated sucsess");
 			},
 			error: function(xhr,err) {
-				alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-				alert("responseText: "+xhr.responseText);
+				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				console.log("responseText: "+xhr.responseText);
 			},
 			type: 'POST'
 		});`
@@ -85,7 +96,7 @@ class window.Application
 		`$.ajax({
 			url: 'scripts/functions.php?ajaxCall=insertUserTask',
 			data: {
-				uid : 33333, 
+				uid : UID, 
 				taskName : name, 
 				dateTime : 0, 
 				targetTime: time, 
@@ -97,8 +108,8 @@ class window.Application
 			Application.prototype.setActiveID(data);
 			},
 			error: function(xhr,err) {
-				alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-				alert("responseText: "+xhr.responseText);
+				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				console.log("responseText: "+xhr.responseText);
 			},
 			type: 'POST'
 		});`
@@ -119,8 +130,8 @@ class window.Application
 				console.log("DB updated sucsess");
 			},
 			error: function(xhr,err) {
-				alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-				alert("responseText: "+xhr.responseText);
+				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				console.log("responseText: "+xhr.responseText);
 			},
 			type: 'POST'
 		});`
@@ -130,14 +141,14 @@ class window.Application
 			url: 'scripts/functions.php?ajaxCall=getOpenTasks',
 			dataType: 'json',
 			data: {
-				uid : 33333, 
+				uid : UID, 
 			},
 			success: function(data){ 
 				Application.prototype.parseStackData(data);
 			},
 			error: function(xhr,err) {
-				alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-				alert("responseText: "+xhr.responseText);
+				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				console.log("responseText: "+xhr.responseText);
 			},
 			type: 'POST'
 		});`
@@ -147,24 +158,112 @@ class window.Application
 			url: 'scripts/functions.php?ajaxCall=getHistory',
 			dataType: 'json',
 			data: {
-				uid : 33333, 
+				uid : UID, 
 			},
 			success: function(data){ 
 				Application.prototype.unpackHistory(data);
 			},
 			error: function(xhr,err) {
-				alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
-				alert("responseText: "+xhr.responseText);
+				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				console.log("responseText: "+xhr.responseText);
+			},
+			type: 'POST'
+		});`
+		
+	renderStats: ->
+		@outputAverageRatio()
+		@outputNumTasks()
+		@outputTotalTime()
+		@outputAverageAccuracy()
+		
+	outputAverageRatio: ->
+		`$.ajax({
+			url: 'scripts/functions.php?ajaxCall=getAverageRatio',
+			data: {
+				uid : UID, 
+			},
+			success: function(data){ 
+				$("#stat-avg-ratio").html(data);
+			},
+			error: function(xhr,err) {
+				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				console.log("responseText: "+xhr.responseText);
+			},
+			type: 'POST'
+		});`
+	outputNumTasks: ->
+		`$.ajax({
+			url: 'scripts/functions.php?ajaxCall=getNumTasksCompleted',
+			data: {
+				uid : UID, 
+			},
+			success: function(data){ 
+				$("#stat-num-tasks").html(data);
+			},
+			error: function(xhr,err) {
+				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				console.log("responseText: "+xhr.responseText);
+			},
+			type: 'POST'
+		});`
+	outputTotalTime: ->
+		`$.ajax({
+			url: 'scripts/functions.php?ajaxCall=getTotalTime',
+			data: {
+				uid : UID, 
+			},
+			success: function(data){ 
+				$("#stat-total-time").html(data);
+			},
+			error: function(xhr,err) {
+				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				console.log("responseText: "+xhr.responseText);
+			},
+			type: 'POST'
+		});`
+	outputAverageAccuracy: ->
+		`$.ajax({
+			url: 'scripts/functions.php?ajaxCall=getAveragePercentAccurarcy',
+			data: {
+				uid : UID, 
+			},
+			success: function(data){ 
+				$("#stat-avg-accuracy").html(data);
+			},
+			error: function(xhr,err) {
+				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				console.log("responseText: "+xhr.responseText);
 			},
 			type: 'POST'
 		});`
 		
 	unpackHistory: (data) ->
-		$("#below-the-fold").html ""
+		$("#history-list").html ""
 		@outputHistory tasks for tasks in data	
-	
+		
 	outputHistory: (task) ->
-		$("#below-the-fold").append "<li>"+task.taskName+"</li>"
+		prettyDate = new Date(task.dateTime)
+		weekday = ['SUN','MON','TUE','WED','THR','FRI','SAT']
+		finalDate = weekday[prettyDate.getDay()]
+		finalDate += " "+(prettyDate.getHours()%12)+":"
+		if prettyDate.getMinutes() < 10
+			finalDate += "0"
+		finalDate += prettyDate.getMinutes()
+		if prettyDate.getHours() > 12
+			finalDate += " PM"
+		else
+			finalDate += " AM"
+	
+		magicRatio = (Math.round(task.ratio*100))/100
+		
+		historyEntry = "<li>"
+		historyEntry += "<span class='history-date'>"+finalDate+"</span>"+task.taskName
+		historyEntry +=	"<span class='history-elapsed'>"+@secondsToTimeString(parseInt task.actualTime)+"</span>"
+		historyEntry +=	"<span class='history-slash'>/</span>"
+		historyEntry += "<span class='history-target'>"+@secondsToTimeString(parseInt task.targetTime)+"</span>"
+		historyEntry += "<span class='history-ratio'>"+magicRatio+"</span>"
+		historyEntry +=	"</li>"
+		$("#history-list").append historyEntry
 		
 	parseStackData: (data) ->
 		@restoreTask tasks for tasks in data
@@ -174,7 +273,7 @@ class window.Application
 			PAUSED = false
 		
 	restoreTask: (task) ->
-		thisTask = [task.taskName, parseInt(task.remainingTime), parseInt(task.actualTime), parseInt(task.id)]
+		thisTask = [task.taskName, parseInt(task.remainingTime), parseInt(task.actualTime), parseInt(task.id), parseInt(task.targetTime)]
 		console.log thisTask
 		MASTER_STACK.push(thisTask)	
 		@renderList()
@@ -182,7 +281,8 @@ class window.Application
 	pushTask: (name,time) ->
 		console.log "Pushing new task to master array with: "+name+" for "+time+" minutes."
 		@updateDBNewTask name, time
-		thisTask = [name, time, 0, -1]
+		## [Name,ActiveTime,ElapsedTime,TaskID,TargetTime]
+		thisTask = [name, time, 0, -1, time]
 		MASTER_STACK.push(thisTask)		
 		@renderList()
 	
@@ -208,6 +308,10 @@ class window.Application
 		activeTask = @getActiveTask()
 		return activeTask[3]
 		
+	getGoalTime: ->
+		activeTask = @getActiveTask()
+		return activeTask[4]
+		
 	setActiveTime: (x) ->
 		MASTER_STACK[MASTER_STACK.length-1][1] = x
 		
@@ -225,6 +329,8 @@ class window.Application
 		@updateDBTaskComplete()
 		MASTER_STACK.pop()
 		@renderList()
+		@renderStats()
+		@renderHistory()
 		## refresh new tiem
 		if MASTER_STACK.length > 0
 			if @getActiveTime() == 0
@@ -279,14 +385,24 @@ class window.Application
 				
 		## task resolution
 		$(".add-time-button").click =>
+			@hideOverlay()
 			DISPLAY_TIME = 10
 			@showTaskTimeSlide()
 		$(".replace-task-button").click =>
+			@hideOverlay()
 			ACTIVE = false
 			PAUSED = true
 			@showTaskInProgNameSlide()
 		$(".complete-task-button").click =>
+			@hideOverlay()
 			@taskComplete()
+			
+	deployOverlay: ->
+		$("#overlay").fadeIn()
+		$("#overlay h1").html @getActiveName()
+	
+	hideOverlay: ->
+		$("#overlay").fadeOut()
 			
 	incrementDisplayTime: ->
 		DISPLAY_TIME++
@@ -295,9 +411,14 @@ class window.Application
 		DISPLAY_TIME--
 		$("#time-muncher").html DISPLAY_TIME
 		
+	randomizePrompt: ->	
+		theword = QUESTIONS[Math.floor(Math.random() * QUESTIONS.length)]
+		$("#prompt").html theword
+	
 	showTaskNameSlide: ->
 		#the first slide
-		$("#prompt").html "What will you do now?"
+		##random text!
+		@randomizePrompt()
 		$("#slide-holder").animate
 			left: "0"
 			500
@@ -317,10 +438,13 @@ class window.Application
 		if $("#thedoing").val()
 			$("#prompt").html ($("#thedoing").val())+"? ok."
 			$("#time-comment").html "How long will that take?"
+			$("#change-intention").fadeIn()
 		else
 			name = @getActiveName()
 			$("#prompt").html "Time to "+name
 			$("#time-comment").html "How much longer do you need?"
+			$("#change-intention").fadeOut()
+		
 		$("#slide-holder").animate
 			left: "-700"
 			500
@@ -334,22 +458,22 @@ class window.Application
 			left: "-1400"
 			500
 			"easeInQuad"
-			
-	showTaskExpiredSlide: ->
-		$("#slide-holder").animate
-			left: "-2100"
-			500
-			"easeInQuad"
 		
 	renderList: ->
 		if MASTER_STACK.length > 0
 			task = @getActiveTask()
-			$("#status").html "Time Left: "+(@secondsToTimeString task[1])+" Elapsed: "+(@secondsToTimeString task[2])+" ID:"+task[3]
+			## [Name,ActiveTime,ElapsedTime,TaskID,TargetTime]
+			$("#time-remaining").html (@secondsToTimeString task[1])
+			$("#elapsed-time").html (@secondsToTimeString task[2])
+			$("#original-target").html (@secondsToTimeString task[4])
 			$("#task-list").html ""
 		if MASTER_STACK.length > 1
+			$("#pending-tasks").fadeIn()
 			@renderTask MASTER_STACK[i] for i in [MASTER_STACK.length-2..0]
+		else
+			$("#pending-tasks").fadeOut()
 	renderTask: (task) ->
-		$("#task-list").append "<div>"+task[0]+"</div>"
+		$("#task-list").append "<li>"+task[0]+"</li>"
 		opacity = 1.0
 		$("#task-list").children().each ->
 			$(this).css "opacity", opacity

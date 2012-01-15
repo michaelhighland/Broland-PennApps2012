@@ -11,6 +11,18 @@
 		<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
+		
+		<div id="overlay">
+			<div id="overlay-wrap">
+				<h1></h1>
+				<h2>are you done?</h2>
+				<button class="white overlay-yes replace-task-button complete-task-button">YES</button>
+				<button class="white overlay-no-top add-time-button">NO, <span>I need more time</span></button>
+				<button class="white overlay-no-bottom replace-task-button">NO, <span>I'm doing something else</span></button>
+				<div class="clear"></div>
+			</div>
+		</div>
+		
 		<div id="header">
 			<div id="logo">Intention</div>
 			
@@ -20,13 +32,14 @@
 		<div class="wrap">
 			<div id="above-the-fold">
 				<div id="fold-hold">
-					<div id="prompt">What will you do now?</div>
+					<div id="prompt"></div>
 					<div id="control-surface">
 						<div id="slide-holder">
 							<div class="slide">
 								<input id="thedoing" type="text"/>
 								<button class="set-time-button white">SET</button>
 								<div class="clear"></div>
+								<h3>set an intention, be specific!</h3>
 							</div>
 							<div class="slide">
 								<h2>How long should that take?</h2>
@@ -36,13 +49,32 @@
 								<button class="time-minus-button white">-</button>
 								<button class="time-plus-button white">+</button>
 								
-								<button class="set-name-button small white">&larr; Change Intention</button>
+								<button id="change-intention" class="set-name-button small white">&larr; Change Intention</button>
 							</div>
 							<div class="slide">
-								<div id="status"></div>
-								<button class="complete-task-button" type="button">FINISHED</button>
-								<button class="minute-plus-button" type="button">MINUTE PLUS</button>
-								<button class="replace-task-button" type="button">SAVE THIS FOR LATER, I'M DOING SOMETHING ELSE!</button>
+								<div id="time-stats">
+									<h4>Time Remaining</h4>
+									<div id="time-remaining">26:49</div>
+										
+									<div id="time-stats-left">
+										<h4>Elapsed Time</h4>
+										<h5 id="elapsed-time">35:23</h5>
+									</div>
+									<div id="time-stats-right">
+										<h4>Original Target</h4>
+										<h5 id="original-target">35:00</h5>
+									</div>	
+										
+										
+								</div>
+								
+								<div id="midtask-options">
+									<button class="complete-task-button white midtask">Finished Task</button>
+									<button class="minute-plus-button white midtask">Add Minute</button>
+									<button class="replace-task-button white midtask">Start New Task</button>
+								</div>
+
+								<div class="clear"></div>
 							</div>
 							<div class="slide">
 								<center>Are you done yet?</center>
@@ -53,12 +85,23 @@
 						</div>	
 					</div>
 				</div>	
+				<h3 id="pending-tasks">pending</h3>
 				<ul id="task-list"> </ul>
 			</div>
 		</div>
 		<div id="below-the-fold">
-			
-			
+			<div id="history">
+				<h6>your history</h6>
+				<ul id="history-list">
+					
+				
+				</ul>
+			</div>
+			<div id="stats">
+				<h6>my stats</h6>
+				
+			</div>
+			<div class="clear"></div>
 		</div>
 		
 		

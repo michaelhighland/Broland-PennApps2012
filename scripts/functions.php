@@ -149,8 +149,9 @@ function updateTaskTime($id, $elapsed, $remaining) {
 }
 
 function completeTask($id, $elapsed, $remaining) {
+	$dateTime = date('Y-m-d H:i:s');
 	if (!mysql_query(
-		"UPDATE tasks SET remainingTime = '$remaining', actualTime = '$elapsed', ratio = (actualTime/targetTime), complete = '1' WHERE id = '$id'"
+		"UPDATE tasks SET dateTime = '$dateTime', remainingTime = '$remaining', actualTime = '$elapsed', ratio = (targetTime/actualTime), complete = '1' WHERE id = '$id'"
 		)) {		
 		echo 'error: ';
 		echo mysql_error();	
@@ -170,7 +171,7 @@ function getOpenTasks($id) {
 }
 
 function getHistory($id) {
-	$result = mysql_query("SELECT * FROM tasks WHERE uid='$id' AND complete = 1");
+	$result = mysql_query("SELECT * FROM tasks WHERE uid='$id' AND complete = 1 ORDER BY dateTime DESC LIMIT 0,10");
 	$searchResultMap=array();
 	while ($rowArray=mysql_fetch_array($result,MYSQL_ASSOC)){
 		$searchResultMap[]=$rowArray;
@@ -178,7 +179,50 @@ function getHistory($id) {
 	echo json_encode($searchResultMap);
 }
 
+function getAverageRatio($id){
+	$result = mysql_query("SELECT * FROM tasks WHERE uid='$id' AND complete = 1");
+	$count = 0;
+	$sum = 0;
+	while($row = mysql_fetch_array($result))
+	  {
+		$sum += $row['ratio'];
+		$count++;
+	  }
+	echo round($sum/$count,2)."%";
+}
 
+function getNumTasksCompleted($id){
+	$result = mysql_query("SELECT * FROM tasks WHERE uid='$id' AND complete = 1");
+	echo mysql_num_rows($result);
+}
 
+function getTotalTime($id){
+	$result = mysql_query("SELECT * FROM tasks WHERE uid='$id' AND complete = 1");
+	$sum = 0;
+	while($row = mysql_fetch_array($result))
+	  {
+		$sum += $row['actualTime'];
+	  }
+	echo $sum;
+}
+
+function getAveragePercentAccurarcy($id){
+	$result = mysql_query("SELECT * FROM tasks WHERE uid='$id' AND complete = 1");
+	$count = 0;
+	$sum = 0;
+	while($row = mysql_fetch_array($result))
+	  {
+		$sum += abs($row['actualTime'] - $row['targetTime'])/$row['actualTime'];
+		$count++;
+	  }
+	$accuracy = $sum/$count;
+	$accuracy *= 100;
+	$accuracy = 100 - $accuracy;
+	$accuracy = min(100,$accuracy);
+	$accuracy = max(0,$accuracy);
+	$accuracy = round($accuracy);
+	
+	echo $accuracy."%";
+}
 
 ?>

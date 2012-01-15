@@ -1,4 +1,4 @@
-/* line 17, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,45 +20,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 20, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 20, ../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 body {
   line-height: 1;
 }
 
-/* line 22, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 24, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 26, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 28, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 101, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 101, ../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 30, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 114, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 114, ../../../.rvm/gems/ruby-1.9.2-p180/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
@@ -109,7 +109,7 @@ body {
   -o-box-shadow: rgba(0, 0, 0, 0.3) 0 0 80px inset;
   box-shadow: rgba(0, 0, 0, 0.3) 0 0 80px inset;
   border-bottom: 1px solid #b7e1f5;
-  background-image: url('/images/grid.png?1326609501');
+  background-image: url('/images/grid.png?1326628222');
 }
 
 /* line 36, ../sass/style.sass */
@@ -141,9 +141,11 @@ body {
 #task-list {
   margin: auto;
   text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
 }
 
-/* line 63, ../sass/style.sass */
+/* line 64, ../sass/style.sass */
 #prompt {
   font-size: 60px;
   font-family: "Montserrat", sans-serif;
@@ -156,7 +158,7 @@ body {
   text-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px, rgba(0, 0, 0, 0.5) 0px -1px 0px;
 }
 
-/* line 75, ../sass/style.sass */
+/* line 76, ../sass/style.sass */
 #control-surface {
   width: 700px;
   margin: auto;
@@ -165,7 +167,7 @@ body {
   position: relative;
 }
 
-/* line 82, ../sass/style.sass */
+/* line 83, ../sass/style.sass */
 #slide-holder {
   height: 300px;
   width: 2800px;
@@ -173,7 +175,7 @@ body {
   top: 0px;
   left: 0px;
 }
-/* line 88, ../sass/style.sass */
+/* line 89, ../sass/style.sass */
 #slide-holder .slide {
   width: 700px;
   float: left;
@@ -182,7 +184,7 @@ body {
   position: relative;
 }
 
-/* line 95, ../sass/style.sass */
+/* line 96, ../sass/style.sass */
 #thedoing {
   font-size: 40px;
   text-transform: lowercase;
@@ -222,7 +224,7 @@ body {
   width: 450px;
 }
 
-/* line 109, ../sass/style.sass */
+/* line 110, ../sass/style.sass */
 ul#history-list li {
   list-style: none;
   font-family: Georgia, serif;
@@ -230,8 +232,8 @@ ul#history-list li {
   line-height: 24px;
   text-align: center;
 }
-/* line 115, ../sass/style.sass */
-ul#history-list li .history-time {
+/* line 116, ../sass/style.sass */
+ul#history-list li .history-date {
   font-size: 10px;
   line-height: 24px;
   margin-right: 15px;
@@ -239,13 +241,13 @@ ul#history-list li .history-time {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-/* line 122, ../sass/style.sass */
+/* line 123, ../sass/style.sass */
 .time {
   font-family: Georgia, serif;
   font-weight: normal;
 }
 
-/* line 126, ../sass/style.sass */
+/* line 127, ../sass/style.sass */
 h2 {
   font-family: Georgia, sans-serif;
   font-style: italic;
@@ -253,7 +255,7 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* line 132, ../sass/style.sass */
+/* line 133, ../sass/style.sass */
 h3 {
   font-size: 10px;
   font-family: "Montserrat", sans-serif;
@@ -265,7 +267,7 @@ h3 {
   text-transform: uppercase;
 }
 
-/* line 142, ../sass/style.sass */
+/* line 143, ../sass/style.sass */
 h4 {
   font-size: 12px;
   font-family: "Montserrat", sans-serif;
@@ -277,7 +279,7 @@ h4 {
   text-transform: uppercase;
 }
 
-/* line 152, ../sass/style.sass */
+/* line 153, ../sass/style.sass */
 h5 {
   font-family: Georgia, sans-serif;
   font-style: normal;
@@ -286,7 +288,7 @@ h5 {
   margin-top: 10px;
 }
 
-/* line 159, ../sass/style.sass */
+/* line 160, ../sass/style.sass */
 h6 {
   font-size: 15px;
   font-family: "Montserrat", sans-serif;
@@ -299,7 +301,7 @@ h6 {
   margin-bottom: 10px;
 }
 
-/* line 170, ../sass/style.sass */
+/* line 171, ../sass/style.sass */
 #logo {
   font-size: 10px;
   font-family: "Montserrat", sans-serif;
@@ -313,7 +315,7 @@ h6 {
   float: left;
 }
 
-/* line 182, ../sass/style.sass */
+/* line 183, ../sass/style.sass */
 #welcome {
   float: right;
   font-family: Georgia, serif;
@@ -326,19 +328,19 @@ h6 {
   margin-right: 15px;
 }
 
-/* line 193, ../sass/style.sass */
+/* line 194, ../sass/style.sass */
 .clear {
   clear: both;
 }
 
-/* line 197, ../sass/style.sass */
+/* line 198, ../sass/style.sass */
 #time-stats {
   float: left;
   width: 360px;
   margin-right: 60px;
 }
 
-/* line 202, ../sass/style.sass */
+/* line 203, ../sass/style.sass */
 #time-remaining {
   font-family: Georgia, serif;
   font-size: 140px;
@@ -347,25 +349,25 @@ h6 {
   margin-bottom: 50px;
 }
 
-/* line 209, ../sass/style.sass */
+/* line 210, ../sass/style.sass */
 #midtask-options {
   float: right;
   width: 235px;
 }
 
-/* line 213, ../sass/style.sass */
+/* line 214, ../sass/style.sass */
 #time-stats-left {
   float: left;
   width: 140px;
 }
 
-/* line 217, ../sass/style.sass */
+/* line 218, ../sass/style.sass */
 #time-stats-right {
   float: right;
   width: 140px;
 }
 
-/* line 222, ../sass/style.sass */
+/* line 223, ../sass/style.sass */
 button {
   display: inline-block;
   margin: 0 2px;
@@ -388,23 +390,23 @@ button {
   box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px;
 }
 
-/* line 236, ../sass/style.sass */
+/* line 237, ../sass/style.sass */
 button:hover, input[type="submit"].button:hover {
   text-decoration: none;
 }
 
-/* line 239, ../sass/style.sass */
+/* line 240, ../sass/style.sass */
 button:active, input[type="submit"].button:active {
   position: relative;
   top: 1px;
 }
 
-/* line 243, ../sass/style.sass */
+/* line 244, ../sass/style.sass */
 .small {
   font-size: 12px;
 }
 
-/* line 246, ../sass/style.sass */
+/* line 247, ../sass/style.sass */
 .set-time-button {
   font-size: 25px;
   font-weight: bold;
@@ -439,7 +441,7 @@ button:active, input[type="submit"].button:active {
   width: 120px;
 }
 
-/* line 257, ../sass/style.sass */
+/* line 258, ../sass/style.sass */
 #minutes {
   position: absolute;
   left: 50%;
@@ -449,7 +451,7 @@ button:active, input[type="submit"].button:active {
   z-index: 4;
 }
 
-/* line 265, ../sass/style.sass */
+/* line 266, ../sass/style.sass */
 #time-muncher {
   font-size: 80px;
   -moz-border-radius: 150px;
@@ -471,7 +473,7 @@ button:active, input[type="submit"].button:active {
   z-index: 3;
 }
 
-/* line 280, ../sass/style.sass */
+/* line 281, ../sass/style.sass */
 .time-minus-button {
   font-size: 25px;
   font-weight: bold;
@@ -509,7 +511,7 @@ button:active, input[type="submit"].button:active {
   z-index: 2;
 }
 
-/* line 294, ../sass/style.sass */
+/* line 295, ../sass/style.sass */
 .time-plus-button {
   font-size: 25px;
   font-weight: bold;
@@ -547,7 +549,7 @@ button:active, input[type="submit"].button:active {
   z-index: 1;
 }
 
-/* line 308, ../sass/style.sass */
+/* line 309, ../sass/style.sass */
 .set-name-button {
   font-weight: bold;
   position: absolute;
@@ -558,7 +560,7 @@ button:active, input[type="submit"].button:active {
   z-index: 1;
 }
 
-/* line 317, ../sass/style.sass */
+/* line 318, ../sass/style.sass */
 .midtask {
   width: 230px;
   margin: 15px auto;
@@ -566,7 +568,7 @@ button:active, input[type="submit"].button:active {
   line-height: 31px;
 }
 
-/* line 323, ../sass/style.sass */
+/* line 324, ../sass/style.sass */
 .logout {
   font-size: 8px;
   text-transform: uppercase;
@@ -575,7 +577,7 @@ button:active, input[type="submit"].button:active {
   margin-left: 3px;
 }
 
-/* line 331, ../sass/style.sass */
+/* line 332, ../sass/style.sass */
 .white {
   color: #333333;
   text-shadow: rgba(255, 255, 255, 0.5) 0 1px 0px;
@@ -588,7 +590,7 @@ button:active, input[type="submit"].button:active {
   background-image: linear-gradient(#ffffff, #dddddd);
 }
 
-/* line 337, ../sass/style.sass */
+/* line 338, ../sass/style.sass */
 .white:hover {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ededed), color-stop(100%, #ededed));
   background-image: -webkit-linear-gradient(#ededed, #ededed);
@@ -598,7 +600,7 @@ button:active, input[type="submit"].button:active {
   background-image: linear-gradient(#ededed, #ededed);
 }
 
-/* line 340, ../sass/style.sass */
+/* line 341, ../sass/style.sass */
 .white:active {
   color: #999999;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dddddd), color-stop(100%, #ffffff));
