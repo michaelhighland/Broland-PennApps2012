@@ -11,6 +11,18 @@
 		<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
+		
+		<div id="overlay">
+			<div id="overlay-wrap">
+				<h1></h1>
+				<h2>are you done?</h2>
+				<button class="white overlay-yes replace-task-button complete-task-button">YES</button>
+				<button class="white overlay-no-top add-time-button">NO, <span>I need more time</span></button>
+				<button class="white overlay-no-bottom replace-task-button">NO, <span>I'm doing something else</span></button>
+				<div class="clear"></div>
+			</div>
+		</div>
+		
 		<div id="header">
 			<div id="logo">Intention</div>
 			
