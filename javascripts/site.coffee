@@ -16,18 +16,19 @@ class window.Application
 		"Gadzooks!"
 		"Sweet Baby Jesus!"
 		"Time Flies!"
+		"Cracking!"
 	]
 		
 	constructor: ->
 		@init()
 		@primeButtons()
 		@primeFoldSize()
-		
 	init: ->
 		console.log "Initializaed Intention 1.0"
 		#this is an ugly hack!
 		loopTime = 1000/SPEED_SCALE
 		interval = `setInterval("Application.prototype.tick()", loopTime)`
+		@initStackFromDB()
 	primeFoldSize: ->
 		# Resize on init
 		$("#above-the-fold").height($(window).height()-FOOTER_OVERLAP)
@@ -40,11 +41,13 @@ class window.Application
 			@incrementActiveElapsedTime 1
 			if not PAUSED
 				@incrementActiveTime -1
-				if @getActiveTime() == 0
-					PAUSED = true
-					theword = EXCLAMATIONS[Math.floor(Math.random() * EXCLAMATIONS.length)]
-					alert theword+" It's time to check in."
-					@showTaskExpiredSlide()
+				if @getActiveTime() <= 0
+					@setActiveTime 0
+					if not PAUSED
+						PAUSED = true
+						theword = EXCLAMATIONS[Math.floor(Math.random() * EXCLAMATIONS.length)]
+						alert theword+" It's time to check in."
+						@showTaskExpiredSlide()
 			if @getActiveElapsedTime() % BACKUP_RATE == 0
 				@updateDBTime()
 			@renderList()
@@ -58,12 +61,14 @@ class window.Application
 	updateDBTime: ->
 		taskID = @getActiveID()
 		actualTime = @getActiveElapsedTime()
+		remainingTime = @getActiveTime()
 		console.log "Updating task ID: "+taskID+" with "+actualTime+" in seconds."
 		`$.ajax({
 			url: 'scripts/functions.php?ajaxCall=updateTaskTime',
 			data: {
 				id : taskID, 
-				time : actualTime, 
+				elapsed: actualTime, 
+				remaining: remainingTime
 			},
 			success: function(data){ 
 				console.log("DB updated sucsess");
@@ -84,6 +89,7 @@ class window.Application
 				dateTime : 0, 
 				targetTime: time, 
 				actualTime : 0, 
+				remainingTime: time, 
 				complete : 0
 			},
 			success: function(data){ 
@@ -98,13 +104,15 @@ class window.Application
 		
 	updateDBTaskComplete: ->
 		taskID = @getActiveID()
-		actualTime = @getActiveElapsedTime()
+		elapsedTime = @getActiveElapsedTime()
+		remainingTime = @getActiveTime()
 		console.log "Completing task"
 		`$.ajax({
 			url: 'scripts/functions.php?ajaxCall=completeTask',
 			data: {
 				id : taskID, 
-				time : actualTime,
+				elapsed : elapsedTime,
+				remaining : remainingTime
 			},
 			success: function(data){ 
 				console.log("DB updated sucsess");
@@ -119,11 +127,12 @@ class window.Application
 	initStackFromDB: ->
 		`$.ajax({
 			url: 'scripts/functions.php?ajaxCall=retreiveOpenTasks',
+			dataType: 'json',
 			data: {
 				uid : 33333, 
 			},
 			success: function(data){ 
-			Application.prototype.setActiveID(data);
+				Application.prototype.parseStackData(data);
 			},
 			error: function(xhr,err) {
 				alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
@@ -132,7 +141,19 @@ class window.Application
 			type: 'POST'
 		});`
 		
-	
+	parseStackData: (data) ->
+		@restoreTask tasks for tasks in data
+		if data.length > 0
+			@showTaskActiveSlide()
+			ACTIVE = true
+			PAUSED = false
+		
+	restoreTask: (task) ->
+		thisTask = [task.taskName, parseInt(task.remainingTime), parseInt(task.actualTime), parseInt(task.id)]
+		console.log thisTask
+		MASTER_STACK.push(thisTask)	
+		@renderList()
+			
 	pushTask: (name,time) ->
 		console.log "Pushing new task to master array with: "+name+" for "+time+" minutes."
 		@updateDBNewTask name, time
@@ -276,7 +297,7 @@ class window.Application
 			$("#prompt").html "Time to "+name
 			$("#time-comment").html "How much longer do you need?"
 		$("#slide-holder").animate
-			left: "-600"
+			left: "-700"
 			500
 			"easeInQuad"	
 
@@ -285,13 +306,13 @@ class window.Application
 		name = @getActiveName()
 		$("#prompt").html "go "+name+"!"
 		$("#slide-holder").animate
-			left: "-1200"
+			left: "-1400"
 			500
 			"easeInQuad"
 			
 	showTaskExpiredSlide: ->
 		$("#slide-holder").animate
-			left: "-1800"
+			left: "-2100"
 			500
 			"easeInQuad"
 		

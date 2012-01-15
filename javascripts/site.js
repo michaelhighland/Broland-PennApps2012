@@ -14,7 +14,7 @@
     NEW_TASK = null;
     BACKUP_RATE = 30;
     SPEED_SCALE = 30;
-    EXCLAMATIONS = ["Huzzah!", "Gadzooks!", "Sweet Baby Jesus!", "Time Flies!"];
+    EXCLAMATIONS = ["Huzzah!", "Gadzooks!", "Sweet Baby Jesus!", "Time Flies!", "Cracking!"];
     function Application() {
       this.init();
       this.primeButtons();
@@ -24,7 +24,8 @@
       var interval, loopTime;
       console.log("Initializaed Intention 1.0");
       loopTime = 1000 / SPEED_SCALE;
-      return interval = setInterval("Application.prototype.tick()", loopTime);
+      interval = setInterval("Application.prototype.tick()", loopTime);
+      return this.initStackFromDB();
     };
     Application.prototype.primeFoldSize = function() {
       $("#above-the-fold").height($(window).height() - FOOTER_OVERLAP);
@@ -38,11 +39,14 @@
         this.incrementActiveElapsedTime(1);
         if (!PAUSED) {
           this.incrementActiveTime(-1);
-          if (this.getActiveTime() === 0) {
-            PAUSED = true;
-            theword = EXCLAMATIONS[Math.floor(Math.random() * EXCLAMATIONS.length)];
-            alert(theword + " It's time to check in.");
-            this.showTaskExpiredSlide();
+          if (this.getActiveTime() <= 0) {
+            this.setActiveTime(0);
+            if (!PAUSED) {
+              PAUSED = true;
+              theword = EXCLAMATIONS[Math.floor(Math.random() * EXCLAMATIONS.length)];
+              alert(theword + " It's time to check in.");
+              this.showTaskExpiredSlide();
+            }
           }
         }
         if (this.getActiveElapsedTime() % BACKUP_RATE === 0) {
@@ -60,15 +64,17 @@
       }
     };
     Application.prototype.updateDBTime = function() {
-      var actualTime, taskID;
+      var actualTime, remainingTime, taskID;
       taskID = this.getActiveID();
       actualTime = this.getActiveElapsedTime();
+      remainingTime = this.getActiveTime();
       console.log("Updating task ID: " + taskID + " with " + actualTime + " in seconds.");
       return $.ajax({
 			url: 'scripts/functions.php?ajaxCall=updateTaskTime',
 			data: {
 				id : taskID, 
-				time : actualTime, 
+				elapsed: actualTime, 
+				remaining: remainingTime
 			},
 			success: function(data){ 
 				console.log("DB updated sucsess");
@@ -89,6 +95,7 @@
 				dateTime : 0, 
 				targetTime: time, 
 				actualTime : 0, 
+				remainingTime: time, 
 				complete : 0
 			},
 			success: function(data){ 
@@ -102,15 +109,17 @@
 		});;
     };
     Application.prototype.updateDBTaskComplete = function() {
-      var actualTime, taskID;
+      var elapsedTime, remainingTime, taskID;
       taskID = this.getActiveID();
-      actualTime = this.getActiveElapsedTime();
+      elapsedTime = this.getActiveElapsedTime();
+      remainingTime = this.getActiveTime();
       console.log("Completing task");
       return $.ajax({
 			url: 'scripts/functions.php?ajaxCall=completeTask',
 			data: {
 				id : taskID, 
-				time : actualTime,
+				elapsed : elapsedTime,
+				remaining : remainingTime
 			},
 			success: function(data){ 
 				console.log("DB updated sucsess");
@@ -125,11 +134,12 @@
     Application.prototype.initStackFromDB = function() {
       return $.ajax({
 			url: 'scripts/functions.php?ajaxCall=retreiveOpenTasks',
+			dataType: 'json',
 			data: {
 				uid : 33333, 
 			},
 			success: function(data){ 
-			Application.prototype.setActiveID(data);
+				Application.prototype.parseStackData(data);
 			},
 			error: function(xhr,err) {
 				alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
@@ -137,6 +147,25 @@
 			},
 			type: 'POST'
 		});;
+    };
+    Application.prototype.parseStackData = function(data) {
+      var tasks, _i, _len;
+      for (_i = 0, _len = data.length; _i < _len; _i++) {
+        tasks = data[_i];
+        this.restoreTask(tasks);
+      }
+      if (data.length > 0) {
+        this.showTaskActiveSlide();
+        ACTIVE = true;
+        return PAUSED = false;
+      }
+    };
+    Application.prototype.restoreTask = function(task) {
+      var thisTask;
+      thisTask = [task.taskName, parseInt(task.remainingTime), parseInt(task.actualTime), parseInt(task.id)];
+      console.log(thisTask);
+      MASTER_STACK.push(thisTask);
+      return this.renderList();
     };
     Application.prototype.pushTask = function(name, time) {
       var thisTask;
@@ -292,7 +321,7 @@
         $("#time-comment").html("How much longer do you need?");
       }
       return $("#slide-holder").animate({
-        left: "-600"
+        left: "-700"
       }, 500, "easeInQuad");
     };
     Application.prototype.showTaskActiveSlide = function() {
@@ -300,12 +329,12 @@
       name = this.getActiveName();
       $("#prompt").html("go " + name + "!");
       return $("#slide-holder").animate({
-        left: "-1200"
+        left: "-1400"
       }, 500, "easeInQuad");
     };
     Application.prototype.showTaskExpiredSlide = function() {
       return $("#slide-holder").animate({
-        left: "-1800"
+        left: "-2100"
       }, 500, "easeInQuad");
     };
     Application.prototype.renderList = function() {

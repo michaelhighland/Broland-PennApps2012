@@ -118,14 +118,14 @@ function getUserHistory($uid){
 	return $htmlString;
 }
 
-function insertUserTask($uid, $taskName, $dateTime, $targetTime, $actualTime, $complete = 0) {
+function insertUserTask($uid, $taskName, $dateTime, $targetTime, $actualTime, $remainingTime, $complete = 0) {
 	$ratio = 0.0; // ratio defaults to NULL
 	if ($complete) $ratio = $targetTime/$actualTime;
 	if (!$dateTime) $dateTime = date('Y-m-d H:i:s'); // IS THIS CORRECT FORMAT FOR SQL???
 	
 	if (!mysql_query(
-		"INSERT INTO tasks (uid, taskName, dateTime, targetTime, actualTime, complete, ratio) 
-		VALUES ('$uid', '$taskName', '$dateTime', '$targetTime', '$actualTime', '$complete', '$ratio')"
+		"INSERT INTO tasks (uid, taskName, dateTime, targetTime, actualTime, remainingTime, complete, ratio) 
+		VALUES ('$uid', '$taskName', '$dateTime', '$targetTime', '$actualTime', '$remainingTime', '$complete', '$ratio')"
 		)) {
 			
 		echo 'error: ';
@@ -136,9 +136,9 @@ function insertUserTask($uid, $taskName, $dateTime, $targetTime, $actualTime, $c
 	}
 }
 
-function updateTaskTime($id, $time) {
+function updateTaskTime($id, $elapsed, $remaining) {
 	if (!mysql_query(
-		"UPDATE tasks SET actualTime = '$time' WHERE id = '$id'"
+		"UPDATE tasks SET actualTime = '$elapsed', remainingTime = '$remaining' WHERE id = '$id'"
 		)) {		
 		echo 'error: ';
 		echo mysql_error();	
@@ -148,9 +148,9 @@ function updateTaskTime($id, $time) {
 	}
 }
 
-function completeTask($id, $time) {
+function completeTask($id, $elapsed, $remaining) {
 	if (!mysql_query(
-		"UPDATE tasks SET actualTime = '$time', ratio = (actualTime/targetTime), complete = '1' WHERE id = '$id'"
+		"UPDATE tasks SET remainingTime = '$remaining', actualTime = '$elapsed', ratio = (actualTime/targetTime), complete = '1' WHERE id = '$id'"
 		)) {		
 		echo 'error: ';
 		echo mysql_error();	
@@ -159,6 +159,16 @@ function completeTask($id, $time) {
 		echo "success!";
 	}
 }
+
+function retreiveOpenTasks($id) {
+	$result = mysql_query("SELECT * FROM tasks WHERE uid='$id' AND complete = 0");
+	$searchResultMap=array();
+	while ($rowArray=mysql_fetch_array($result,MYSQL_ASSOC)){
+		$searchResultMap[]=$rowArray;
+	}
+	echo json_encode($searchResultMap);
+}
+
 
 
 
