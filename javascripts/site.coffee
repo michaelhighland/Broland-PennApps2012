@@ -10,6 +10,7 @@ class window.Application
 	NEW_TASK = null
 	BACKUP_RATE = 30
 	SPEED_SCALE = 10
+	UID = 33333
 	
 	EXCLAMATIONS = [
 		"Huzzah!"
@@ -39,6 +40,7 @@ class window.Application
 		@initStackFromDB()
 		@renderHistory()
 		@renderList()
+		@renderStats()
 	primeFoldSize: ->
 		# Resize on init
 		$("#above-the-fold").height($(window).height()-FOOTER_OVERLAP)
@@ -94,7 +96,7 @@ class window.Application
 		`$.ajax({
 			url: 'scripts/functions.php?ajaxCall=insertUserTask',
 			data: {
-				uid : 33333, 
+				uid : UID, 
 				taskName : name, 
 				dateTime : 0, 
 				targetTime: time, 
@@ -139,7 +141,7 @@ class window.Application
 			url: 'scripts/functions.php?ajaxCall=getOpenTasks',
 			dataType: 'json',
 			data: {
-				uid : 33333, 
+				uid : UID, 
 			},
 			success: function(data){ 
 				Application.prototype.parseStackData(data);
@@ -156,10 +158,77 @@ class window.Application
 			url: 'scripts/functions.php?ajaxCall=getHistory',
 			dataType: 'json',
 			data: {
-				uid : 33333, 
+				uid : UID, 
 			},
 			success: function(data){ 
 				Application.prototype.unpackHistory(data);
+			},
+			error: function(xhr,err) {
+				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				console.log("responseText: "+xhr.responseText);
+			},
+			type: 'POST'
+		});`
+		
+	renderStats: ->
+		@outputAverageRatio()
+		@outputNumTasks()
+		@outputTotalTime()
+		@outputAverageAccuracy()
+		
+	outputAverageRatio: ->
+		`$.ajax({
+			url: 'scripts/functions.php?ajaxCall=getAverageRatio',
+			data: {
+				uid : UID, 
+			},
+			success: function(data){ 
+				$("#stat-avg-ratio").html(data);
+			},
+			error: function(xhr,err) {
+				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				console.log("responseText: "+xhr.responseText);
+			},
+			type: 'POST'
+		});`
+	outputNumTasks: ->
+		`$.ajax({
+			url: 'scripts/functions.php?ajaxCall=getNumTasksCompleted',
+			data: {
+				uid : UID, 
+			},
+			success: function(data){ 
+				$("#stat-num-tasks").html(data);
+			},
+			error: function(xhr,err) {
+				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				console.log("responseText: "+xhr.responseText);
+			},
+			type: 'POST'
+		});`
+	outputTotalTime: ->
+		`$.ajax({
+			url: 'scripts/functions.php?ajaxCall=getTotalTime',
+			data: {
+				uid : UID, 
+			},
+			success: function(data){ 
+				$("#stat-total-time").html(data);
+			},
+			error: function(xhr,err) {
+				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
+				console.log("responseText: "+xhr.responseText);
+			},
+			type: 'POST'
+		});`
+	outputAverageAccuracy: ->
+		`$.ajax({
+			url: 'scripts/functions.php?ajaxCall=getAveragePercentAccurarcy',
+			data: {
+				uid : UID, 
+			},
+			success: function(data){ 
+				$("#stat-avg-accuracy").html(data);
 			},
 			error: function(xhr,err) {
 				console.log("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);
@@ -185,12 +254,14 @@ class window.Application
 		else
 			finalDate += " AM"
 	
+		magicRatio = (Math.round(task.ratio*100))/100
+		
 		historyEntry = "<li>"
 		historyEntry += "<span class='history-date'>"+finalDate+"</span>"+task.taskName
 		historyEntry +=	"<span class='history-elapsed'>"+@secondsToTimeString(parseInt task.actualTime)+"</span>"
 		historyEntry +=	"<span class='history-slash'>/</span>"
 		historyEntry += "<span class='history-target'>"+@secondsToTimeString(parseInt task.targetTime)+"</span>"
-		historyEntry += "<span class='history-ratio'>"+task.ratio+"</span>"
+		historyEntry += "<span class='history-ratio'>"+magicRatio+"</span>"
 		historyEntry +=	"</li>"
 		$("#history-list").append historyEntry
 		
@@ -258,6 +329,7 @@ class window.Application
 		@updateDBTaskComplete()
 		MASTER_STACK.pop()
 		@renderList()
+		@renderStats()
 		@renderHistory()
 		## refresh new tiem
 		if MASTER_STACK.length > 0
