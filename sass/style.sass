@@ -39,6 +39,19 @@ body
 	background-color: #156489
 	border-top: 3px solid #0d5577
 	height: 500px
+	color: white
+	
+#history
+	padding: 30px
+	width: 35%
+	margin-right: 20%
+	float: left
+	
+#stats
+	padding: 30px
+	width: 35%
+	float: left
+	
 	
 #fold-hold
 	
@@ -93,6 +106,17 @@ body
 	width: 450px
 	
 
+ul#history-list li
+	list-style: none
+	font-family: Helvetica, Arial, sans-serif
+	font-size: 14px
+	line-height: 24px
+	text-align: center
+	.history-time
+		font-size: 10px
+		line-height: 24px
+		margin-right: 15px
+		color: #ccc
 
 .time
 	font-family: Georgia, serif
@@ -131,6 +155,16 @@ h5
 	text-align: left
 	margin-top: 10px
 
+h6
+	font-size: 15px
+	font-family: 'Montserrat', sans-serif
+	letter-spacing: 2px
+	color: #fff
+	text-align: center
+	line-height: 30px
+	text-transform: uppercase
+	+text-shadow(rgba(black, .9) 0px -1px 0px)
+	margin-bottom: 10px
 
 #logo
 	font-size: 10px
@@ -204,6 +238,9 @@ button:hover, input[type="submit"].button:hover
 button:active, input[type="submit"].button:active
 	position: relative
 	top: 1px
+	
+.small
+	font-size: 12px
  
 .set-time-button
 	font-size: 25px
@@ -268,12 +305,12 @@ button:active, input[type="submit"].button:active
 	z-index: 1
 	
 .set-name-button
-	font-size: 15px
 	font-weight: bold
 	position: absolute
 	left: 50%
-	margin-left: 65px
-	top: 205px
+	width: 140px
+	margin-left: -70px
+	top: 235px
 	z-index: 1
 
 .midtask

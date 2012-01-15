@@ -119,15 +119,31 @@ body {
   background-color: #156489;
   border-top: 3px solid #0d5577;
   height: 500px;
+  color: white;
 }
 
-/* line 45, ../sass/style.sass */
+/* line 44, ../sass/style.sass */
+#history {
+  padding: 30px;
+  width: 35%;
+  margin-right: 20%;
+  float: left;
+}
+
+/* line 50, ../sass/style.sass */
+#stats {
+  padding: 30px;
+  width: 35%;
+  float: left;
+}
+
+/* line 58, ../sass/style.sass */
 #task-list {
   margin: auto;
   text-align: center;
 }
 
-/* line 50, ../sass/style.sass */
+/* line 63, ../sass/style.sass */
 #prompt {
   font-size: 60px;
   font-family: "Montserrat", sans-serif;
@@ -140,7 +156,7 @@ body {
   text-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px, rgba(0, 0, 0, 0.5) 0px -1px 0px;
 }
 
-/* line 62, ../sass/style.sass */
+/* line 75, ../sass/style.sass */
 #control-surface {
   width: 700px;
   margin: auto;
@@ -149,7 +165,7 @@ body {
   position: relative;
 }
 
-/* line 69, ../sass/style.sass */
+/* line 82, ../sass/style.sass */
 #slide-holder {
   height: 300px;
   width: 2800px;
@@ -157,7 +173,7 @@ body {
   top: 0px;
   left: 0px;
 }
-/* line 75, ../sass/style.sass */
+/* line 88, ../sass/style.sass */
 #slide-holder .slide {
   width: 700px;
   float: left;
@@ -166,7 +182,7 @@ body {
   position: relative;
 }
 
-/* line 82, ../sass/style.sass */
+/* line 95, ../sass/style.sass */
 #thedoing {
   font-size: 40px;
   text-transform: lowercase;
@@ -206,13 +222,29 @@ body {
   width: 450px;
 }
 
-/* line 97, ../sass/style.sass */
+/* line 109, ../sass/style.sass */
+ul#history-list li {
+  list-style: none;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+}
+/* line 115, ../sass/style.sass */
+ul#history-list li .history-time {
+  font-size: 10px;
+  line-height: 24px;
+  margin-right: 15px;
+  color: #cccccc;
+}
+
+/* line 121, ../sass/style.sass */
 .time {
   font-family: Georgia, serif;
   font-weight: normal;
 }
 
-/* line 101, ../sass/style.sass */
+/* line 125, ../sass/style.sass */
 h2 {
   font-family: Georgia, sans-serif;
   font-style: italic;
@@ -220,7 +252,7 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* line 107, ../sass/style.sass */
+/* line 131, ../sass/style.sass */
 h3 {
   font-size: 10px;
   font-family: "Montserrat", sans-serif;
@@ -232,7 +264,7 @@ h3 {
   text-transform: uppercase;
 }
 
-/* line 117, ../sass/style.sass */
+/* line 141, ../sass/style.sass */
 h4 {
   font-size: 12px;
   font-family: "Montserrat", sans-serif;
@@ -244,7 +276,7 @@ h4 {
   text-transform: uppercase;
 }
 
-/* line 127, ../sass/style.sass */
+/* line 151, ../sass/style.sass */
 h5 {
   font-family: Georgia, sans-serif;
   font-style: normal;
@@ -253,7 +285,20 @@ h5 {
   margin-top: 10px;
 }
 
-/* line 135, ../sass/style.sass */
+/* line 158, ../sass/style.sass */
+h6 {
+  font-size: 15px;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 2px;
+  color: white;
+  text-align: center;
+  line-height: 30px;
+  text-transform: uppercase;
+  text-shadow: rgba(0, 0, 0, 0.9) 0px -1px 0px;
+  margin-bottom: 10px;
+}
+
+/* line 169, ../sass/style.sass */
 #logo {
   font-size: 10px;
   font-family: "Montserrat", sans-serif;
@@ -267,7 +312,7 @@ h5 {
   float: left;
 }
 
-/* line 147, ../sass/style.sass */
+/* line 181, ../sass/style.sass */
 #welcome {
   float: right;
   font-family: Georgia, serif;
@@ -280,19 +325,19 @@ h5 {
   margin-right: 15px;
 }
 
-/* line 158, ../sass/style.sass */
+/* line 192, ../sass/style.sass */
 .clear {
   clear: both;
 }
 
-/* line 162, ../sass/style.sass */
+/* line 196, ../sass/style.sass */
 #time-stats {
   float: left;
   width: 360px;
   margin-right: 60px;
 }
 
-/* line 167, ../sass/style.sass */
+/* line 201, ../sass/style.sass */
 #time-remaining {
   font-family: Georgia, serif;
   font-size: 140px;
@@ -301,25 +346,25 @@ h5 {
   margin-bottom: 50px;
 }
 
-/* line 174, ../sass/style.sass */
+/* line 208, ../sass/style.sass */
 #midtask-options {
   float: right;
   width: 235px;
 }
 
-/* line 178, ../sass/style.sass */
+/* line 212, ../sass/style.sass */
 #time-stats-left {
   float: left;
   width: 140px;
 }
 
-/* line 182, ../sass/style.sass */
+/* line 216, ../sass/style.sass */
 #time-stats-right {
   float: right;
   width: 140px;
 }
 
-/* line 187, ../sass/style.sass */
+/* line 221, ../sass/style.sass */
 button {
   display: inline-block;
   margin: 0 2px;
@@ -342,18 +387,23 @@ button {
   box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px;
 }
 
-/* line 201, ../sass/style.sass */
+/* line 235, ../sass/style.sass */
 button:hover, input[type="submit"].button:hover {
   text-decoration: none;
 }
 
-/* line 204, ../sass/style.sass */
+/* line 238, ../sass/style.sass */
 button:active, input[type="submit"].button:active {
   position: relative;
   top: 1px;
 }
 
-/* line 208, ../sass/style.sass */
+/* line 242, ../sass/style.sass */
+.small {
+  font-size: 12px;
+}
+
+/* line 245, ../sass/style.sass */
 .set-time-button {
   font-size: 25px;
   font-weight: bold;
@@ -388,7 +438,7 @@ button:active, input[type="submit"].button:active {
   width: 120px;
 }
 
-/* line 219, ../sass/style.sass */
+/* line 256, ../sass/style.sass */
 #minutes {
   position: absolute;
   left: 50%;
@@ -398,7 +448,7 @@ button:active, input[type="submit"].button:active {
   z-index: 4;
 }
 
-/* line 227, ../sass/style.sass */
+/* line 264, ../sass/style.sass */
 #time-muncher {
   font-size: 80px;
   -moz-border-radius: 150px;
@@ -420,7 +470,7 @@ button:active, input[type="submit"].button:active {
   z-index: 3;
 }
 
-/* line 242, ../sass/style.sass */
+/* line 279, ../sass/style.sass */
 .time-minus-button {
   font-size: 25px;
   font-weight: bold;
@@ -458,7 +508,7 @@ button:active, input[type="submit"].button:active {
   z-index: 2;
 }
 
-/* line 256, ../sass/style.sass */
+/* line 293, ../sass/style.sass */
 .time-plus-button {
   font-size: 25px;
   font-weight: bold;
@@ -496,18 +546,18 @@ button:active, input[type="submit"].button:active {
   z-index: 1;
 }
 
-/* line 270, ../sass/style.sass */
+/* line 307, ../sass/style.sass */
 .set-name-button {
-  font-size: 15px;
   font-weight: bold;
   position: absolute;
   left: 50%;
-  margin-left: 65px;
-  top: 205px;
+  width: 140px;
+  margin-left: -70px;
+  top: 235px;
   z-index: 1;
 }
 
-/* line 279, ../sass/style.sass */
+/* line 316, ../sass/style.sass */
 .midtask {
   width: 230px;
   margin: 15px auto;
@@ -515,7 +565,7 @@ button:active, input[type="submit"].button:active {
   line-height: 31px;
 }
 
-/* line 285, ../sass/style.sass */
+/* line 322, ../sass/style.sass */
 .logout {
   font-size: 8px;
   text-transform: uppercase;
@@ -524,7 +574,7 @@ button:active, input[type="submit"].button:active {
   margin-left: 3px;
 }
 
-/* line 293, ../sass/style.sass */
+/* line 330, ../sass/style.sass */
 .white {
   color: #333333;
   text-shadow: rgba(255, 255, 255, 0.5) 0 1px 0px;
@@ -537,7 +587,7 @@ button:active, input[type="submit"].button:active {
   background-image: linear-gradient(#ffffff, #dddddd);
 }
 
-/* line 299, ../sass/style.sass */
+/* line 336, ../sass/style.sass */
 .white:hover {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ededed), color-stop(100%, #ededed));
   background-image: -webkit-linear-gradient(#ededed, #ededed);
@@ -547,7 +597,7 @@ button:active, input[type="submit"].button:active {
   background-image: linear-gradient(#ededed, #ededed);
 }
 
-/* line 302, ../sass/style.sass */
+/* line 339, ../sass/style.sass */
 .white:active {
   color: #999999;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dddddd), color-stop(100%, #ffffff));

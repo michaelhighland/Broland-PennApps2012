@@ -36,7 +36,7 @@
 								<button class="time-minus-button white">-</button>
 								<button class="time-plus-button white">+</button>
 								
-								<button class="set-name-button white">Change Intention</button>
+								<button class="set-name-button small white">&larr; Change Intention</button>
 							</div>
 							<div class="slide">
 								<div id="status"></div>
@@ -60,6 +60,8 @@
 			
 			
 		</div>
+		
+		
 		
 		
 		
