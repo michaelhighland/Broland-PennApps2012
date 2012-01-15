@@ -14,7 +14,7 @@
 		<div id="header">
 			<div id="logo">Intention</div>
 			
-			<div id="welcome">Welcome Broland! <!--><button class="white logout">logout</button>--></div>
+			<div id="welcome">Welcome Broland! <!--<button class="white logout">logout</button>--></div>
 			<div class="clear"></div>
 		</div>
 		<div class="wrap">
@@ -53,12 +53,12 @@
 						</div>	
 					</div>
 				</div>	
-				<div>Task Queue</div>
-				<div id="task-list"> </div>
+				<ul id="task-list"> </ul>
 			</div>
 		</div>
 		<div id="below-the-fold">
-			footer
+			
+			
 		</div>
 		
 		
@@ -66,12 +66,3 @@
 		
 	</body>
 </html>
-
-<?php
-$dbhost = 'mysql.pennapps.michaelhighland.com';
-$dbuser = 'broland';
-$dbpass = 'namaste';
-$dbname = 'broland';
-$connect = mysql_connect($dbhost, $dbuser, $dbpass) or die('Error connecting to mysql: ' . mysql_error());  
-mysql_select_db($dbname) or die('Could not select the database: ' . mysql_error());
-?>
