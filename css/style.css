@@ -109,7 +109,7 @@ body {
   -o-box-shadow: rgba(0, 0, 0, 0.3) 0 0 80px inset;
   box-shadow: rgba(0, 0, 0, 0.3) 0 0 80px inset;
   border-bottom: 1px solid #b7e1f5;
-  background-image: url('/images/grid.png?1326608727');
+  background-image: url('/images/grid.png?1326609501');
 }
 
 /* line 36, ../sass/style.sass */
@@ -293,7 +293,7 @@ h5 {
 }
 
 /* line 167, ../sass/style.sass */
-#elapsed-time {
+#time-remaining {
   font-family: Georgia, serif;
   font-size: 140px;
   text-align: left;

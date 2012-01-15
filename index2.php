@@ -20,15 +20,15 @@
 							<div class="slide">
 								<div id="time-stats">
 									<h4>Time Remaining</h4>
-									<div id="elapsed-time">26:49</div>
+									<div id="time-remaining">26:49</div>
 										
 									<div id="time-stats-left">
 										<h4>Elapsed Time</h4>
-										<h5>35:23</h5>
+										<h5 id="elapsed-time">35:23</h5>
 									</div>
 									<div id="time-stats-right">
 										<h4>Original Target</h4>
-										<h5>35:00</h5>
+										<h5 id="original-target">35:00</h5>
 									</div>	
 										
 										
