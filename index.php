@@ -23,6 +23,17 @@
 			</div>
 		</div>
 		
+		<div id="about">
+			<h3>What is Intentionq?</h3>
+
+		<p>What would it look like to use the computer in a more intentional way; to only engage in tasks out of a conscious desire to do so? Intentionq aims to answer that question in the simplest way possible, by recording and tracking your intentions as you use the computer.</p>
+		
+		<p class="quote">“The conviction was growing in me that the besetting problem was our culture’s blindness to the distinction between the 	tool and the automatic machine. Everyone tended to treat them alike, as neutral agents of human intention. But machines clearly were not neutral or inert objects. They were complex fuel consuming entities with certain definite proclivities and needs. Besides often depriving their users of skills and physical exercise, they created new and artificial demands -- for fuel, space, money, and time. These in turn crowded out other important human pursuits, like involvement in family and community, or even the process of thinking itself. The very act of accepting the machine was becoming automatic.”</p>
+
+	<p class="quote-author">From <b><a href="http://www.amazon.com/Better-Off-Flipping-Switch-Technology/dp/0060570040" target="_blank">Better Off</a></b> by Eric Brende</div>
+
+		</div>
+		
 		<div id="header">
 			<div id="logo">Intention</div>
 			

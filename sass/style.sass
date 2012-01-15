@@ -155,14 +155,37 @@ ul#history-list li
 		+text-shadow(rgba(black, .9) 0px -1px 0px)
 		font-family: Georgia, serif
 	
-
+a
+	color: #156489
+a:hover
+	color: #51abd6
 
 .time
 	font-family: Georgia, serif
 	font-weight: normal
+
+p
+	font-family: Georgia, serif
+	font-size: 13px
+	line-height: 16px
+	margin: 5px 0
+	color: #666
+	margin-bottom: 20px
+p.quote
+	font-style: italic
+	font-size: 12px
+	line-height: 16px
+	color: #aaa
+p.quote-author
+	font-style: italic
+	font-size: 12px
+	line-height: 15px
+	color: #aaa
+	float: right
+
 	
 h2
-	font-family: Georgia, sans-serif
+	font-family: Georgia, serif
 	font-style: italic
 	font-size: 20px
 	margin-bottom: 20px
@@ -212,10 +235,32 @@ h6
 	color: #fff
 	text-align: center
 	line-height: 30px
-	margin-left: 10px
+	padding: 0 10px
 	text-transform: uppercase
+	cursor: pointer
 	+text-shadow(rgba(black, .9) 0px -1px 0px)
 	float: left
+	&:hover
+		+background(rgba(white, .1))
+		
+		
+#logo.activated
+	background: #fff
+	+box-shadow(rgba(0,0,0,.4) 2px 2px 2px)
+	color: #333
+	+text-shadow(rgba(black, 0) 0px -1px 0px)
+		
+#about
+	position: absolute
+	display:none
+	z-index: 500
+	top: 30px
+	left: 0px
+	background: #fff
+	width: 300px
+	padding: 20px
+	+box-shadow(rgba(0,0,0,.4) 2px 2px 2px)
+	
 	
 #welcome
 	float: right
