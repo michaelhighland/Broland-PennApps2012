@@ -1,24 +1,25 @@
 @import "compass/reset"
 @import "compass/css3"
+@import "compass/layout/grid-background"
 
 html
 	margin: 0
 	padding: 0
 
 body
-	
+	+background-image(radial-gradient(#b7e1f5, #53bff2 800px))
 	margin: 0
 	padding: 0
 	
 #header
-	position: fixed
+	position: absolute
 	top: 0px
 	left: 0px
 	width: 100%
-	height: 20px
+	height: 30px
 	z-index: 10
-	background-color: pink
-	border-bottom: 2px solid black
+	background-color: #156489
+	border-bottom: 1px solid #b7e1f5
 	
 #above-the-fold
 	margin: auto
@@ -27,15 +28,19 @@ body
 	overflow: hidden
 	position: relative
 	
+.wrap
+	+box-shadow(rgba(black, .3) 0 0 80px inset)
+	border-bottom: 1px solid #b7e1f5
+	+background-image(image-url("grid.png"))
+	
 #below-the-fold
 	margin: auto
 	width: 100%
-	background-color: pink
-	border-top: 5px solid black
+	background-color: #156489
+	border-top: 3px solid #0d5577
 	height: 500px
 	
 #fold-hold
-	border: 1px solid blue
 	
 #task-list
 	margin: auto
@@ -45,23 +50,24 @@ body
 #prompt
 	font-size: 60px
 	font-family: 'Montserrat', sans-serif
-	letter-spacing: -5px
+	letter-spacing: -2px
+	color: #333
 	text-align: center
 	margin-top: 100px
 	margin-bottom: 30px
 	text-transform: lowercase
+	+text-shadow(rgba(white, .5) 0px 1px 0px, rgba(black, .5) 0px -1px 0px)
 	
 
 #control-surface
 	width: 600px
 	margin: auto
-	height: 200px
-	border: 1px solid red
+	height: 300px
 	overflow: hidden
 	position: relative
 	
 #slide-holder
-	height: 200px
+	height: 300px
 	width: 2400px
 	position: absolute
 	top: 0px
@@ -69,12 +75,163 @@ body
 	.slide
 		width: 600px
 		float: left
-		height: 200px
+		height: 300px
 		text-align: center
+		position: relative
 
 #thedoing
 	font-size: 40px
 	text-transform: lowercase
+	+border-left-radius(8px)
+	+border-right-radius(0px)
+	padding: 15px
+	+background(rgba(white, .8))
+	border: 1px solid #53bff2
+	+box-shadow(rgba(black,0.6) 0 0 3px inset)
+	color: #333
+	float: left
+	width: 450px
+	
+
+
+.time
+	font-family: Georgia, serif
+	font-weight: normal
+	
+h2
+	font-family: Georgia, sans-serif
+	font-style: italic
+	font-size: 20px
+	margin-bottom: 20px
+	
+h3
+	font-size: 10px
+	font-family: 'Montserrat', sans-serif
+	letter-spacing: 2px
+	color: #333
+	text-align: center
+	margin-top: 10px
+	margin-bottom: 20px
+	text-transform: uppercase
+
+
+span.logo
+	font-size: 10px
+	font-family: 'Montserrat', sans-serif
+	letter-spacing: 2px
+	color: #fff
+	text-align: center
+	line-height: 30px
+	margin-left: 10px
+	text-transform: uppercase
+	+text-shadow(rgba(black, .9) 0px -1px 0px)
+	
+.clear
+	clear: both
+	
+// BUTTONS
+button
+	display: inline-block
+	vertical-align baseline
+	margin: 0 2px
+	outline: none
+	cursor: pointer
+	text-align: center
+	text-decoration: none
+	font: 14px/100% Arial, Helvetica, sans-serif
+	font-weight: bold
+	padding: .5em 1em .55em
+	+border-radius(.5em)
+	+box-shadow(rgba(0,0,0,.2) 0 1px 2px)
+		
+button:hover, input[type="submit"].button:hover
+	text-decoration: none
+
+button:active, input[type="submit"].button:active
+	position: relative
+	top: 1px
+ 
+.set-time-button
+	font-size: 25px
+	font-weight: bold
+	float: left
+	padding: 0px
+	+border-right-radius(1em)
+	+border-left-radius(0px)
+	margin: 3px 0 0 -8px
+	line-height: 75px
+	width: 120px
+	
+#minutes
+	position: absolute
+	left: 50%
+	top: 155px
+	width: 100px
+	margin-left: -50px
+	z-index: 4
 
 #time-muncher
-	font-size: 60px
+	font-size: 80px
+	+border-radius(150px)
+	+text-shadow(rgba(white,.8) 0 2px 0px)
+	width: 150px
+	height: 150px
+	padding: 0px 0px 30px 0px
+	line-height: 120px
+	font-weight: normal
+	position: absolute
+	left: 50%
+	top: 50px
+	margin-left: -75px
+	z-index: 3
+	
+.time-minus-button 
+	font-size: 25px
+	font-weight: bold
+	padding: 0px
+	+border-right-radius(0px)
+	+border-left-radius(1em)
+	line-height: 55px
+	width: 50px
+	position: absolute
+	margin-left: -115px
+	left: 50%
+	top: 95px
+	z-index: 2
+	
+.time-plus-button 
+	font-size: 25px
+	font-weight: bold
+	padding: 0px
+	+border-left-radius(0px)
+	+border-right-radius(1em)
+	line-height: 55px
+	width: 50px
+	position: absolute
+	left: 50%
+	margin-left: 65px
+	top: 95px
+	z-index: 1
+	
+.set-name-button
+	font-size: 15px
+	font-weight: bold
+	position: absolute
+	left: 50%
+	margin-left: 65px
+	top: 205px
+	z-index: 1
+
+.white
+	color: #333
+	+text-shadow(rgba(white,.5) 0 1px 0px)
+	border: solid 1px #b7b7b7
+	+background-image(linear-gradient(#fff, #ddd))
+
+.white:hover
+	+background-image(linear-gradient(#ededed, #ededed))
+
+.white:active
+	color: #999
+	+background-image(linear-gradient(#ddd,#fff))
+		

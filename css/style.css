@@ -63,31 +63,37 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/* line 4, ../sass/style.sass */
+/* line 5, ../sass/style.sass */
 html {
   margin: 0;
   padding: 0;
 }
 
-/* line 8, ../sass/style.sass */
+/* line 9, ../sass/style.sass */
 body {
+  background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 800, color-stop(0%, #b7e1f5), color-stop(100%, #53bff2));
+  background-image: -webkit-radial-gradient(#b7e1f5, #53bff2 800px);
+  background-image: -moz-radial-gradient(#b7e1f5, #53bff2 800px);
+  background-image: -o-radial-gradient(#b7e1f5, #53bff2 800px);
+  background-image: -ms-radial-gradient(#b7e1f5, #53bff2 800px);
+  background-image: radial-gradient(#b7e1f5, #53bff2 800px);
   margin: 0;
   padding: 0;
 }
 
-/* line 13, ../sass/style.sass */
+/* line 14, ../sass/style.sass */
 #header {
-  position: fixed;
+  position: absolute;
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 20px;
+  height: 30px;
   z-index: 10;
-  background-color: pink;
-  border-bottom: 2px solid black;
+  background-color: #156489;
+  border-bottom: 1px solid #b7e1f5;
 }
 
-/* line 23, ../sass/style.sass */
+/* line 24, ../sass/style.sass */
 #above-the-fold {
   margin: auto;
   width: 800px;
@@ -96,70 +102,372 @@ body {
   position: relative;
 }
 
-/* line 30, ../sass/style.sass */
+/* line 31, ../sass/style.sass */
+.wrap {
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 0 80px inset;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 0 80px inset;
+  -o-box-shadow: rgba(0, 0, 0, 0.3) 0 0 80px inset;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0 80px inset;
+  border-bottom: 1px solid #b7e1f5;
+  background-image: url('/images/grid.png?1326589963');
+}
+
+/* line 36, ../sass/style.sass */
 #below-the-fold {
   margin: auto;
   width: 100%;
-  background-color: pink;
-  border-top: 5px solid black;
+  background-color: #156489;
+  border-top: 3px solid #0d5577;
   height: 500px;
 }
 
-/* line 37, ../sass/style.sass */
-#fold-hold {
-  border: 1px solid blue;
-}
-
-/* line 40, ../sass/style.sass */
+/* line 45, ../sass/style.sass */
 #task-list {
   margin: auto;
   text-align: center;
 }
 
-/* line 45, ../sass/style.sass */
+/* line 50, ../sass/style.sass */
 #prompt {
   font-size: 60px;
   font-family: "Montserrat", sans-serif;
-  letter-spacing: -5px;
+  letter-spacing: -2px;
+  color: #333333;
   text-align: center;
   margin-top: 100px;
   margin-bottom: 30px;
   text-transform: lowercase;
+  text-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px, rgba(0, 0, 0, 0.5) 0px -1px 0px;
 }
 
-/* line 55, ../sass/style.sass */
+/* line 62, ../sass/style.sass */
 #control-surface {
   width: 600px;
   margin: auto;
-  height: 200px;
-  border: 1px solid red;
+  height: 300px;
   overflow: hidden;
   position: relative;
 }
 
-/* line 63, ../sass/style.sass */
+/* line 69, ../sass/style.sass */
 #slide-holder {
-  height: 200px;
+  height: 300px;
   width: 2400px;
   position: absolute;
   top: 0px;
   left: 0px;
 }
-/* line 69, ../sass/style.sass */
+/* line 75, ../sass/style.sass */
 #slide-holder .slide {
   width: 600px;
   float: left;
-  height: 200px;
+  height: 300px;
   text-align: center;
+  position: relative;
 }
 
-/* line 75, ../sass/style.sass */
+/* line 82, ../sass/style.sass */
 #thedoing {
   font-size: 40px;
   text-transform: lowercase;
+  -moz-border-radius-topleft: 8px;
+  -webkit-border-top-left-radius: 8px;
+  -o-border-top-left-radius: 8px;
+  -ms-border-top-left-radius: 8px;
+  -khtml-border-top-left-radius: 8px;
+  border-top-left-radius: 8px;
+  -moz-border-radius-bottomleft: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+  -o-border-bottom-left-radius: 8px;
+  -ms-border-bottom-left-radius: 8px;
+  -khtml-border-bottom-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  -moz-border-radius-topright: 0px;
+  -webkit-border-top-right-radius: 0px;
+  -o-border-top-right-radius: 0px;
+  -ms-border-top-right-radius: 0px;
+  -khtml-border-top-right-radius: 0px;
+  border-top-right-radius: 0px;
+  -moz-border-radius-bottomright: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+  -o-border-bottom-right-radius: 0px;
+  -ms-border-bottom-right-radius: 0px;
+  -khtml-border-bottom-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #53bff2;
+  -moz-box-shadow: rgba(0, 0, 0, 0.6) 0 0 3px inset;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.6) 0 0 3px inset;
+  -o-box-shadow: rgba(0, 0, 0, 0.6) 0 0 3px inset;
+  box-shadow: rgba(0, 0, 0, 0.6) 0 0 3px inset;
+  color: #333333;
+  float: left;
+  width: 450px;
 }
 
-/* line 79, ../sass/style.sass */
+/* line 97, ../sass/style.sass */
+.time {
+  font-family: Georgia, serif;
+  font-weight: normal;
+}
+
+/* line 101, ../sass/style.sass */
+h2 {
+  font-family: Georgia, sans-serif;
+  font-style: italic;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+/* line 107, ../sass/style.sass */
+h3 {
+  font-size: 10px;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 2px;
+  color: #333333;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/* line 118, ../sass/style.sass */
+span.logo {
+  font-size: 10px;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 2px;
+  color: white;
+  text-align: center;
+  line-height: 30px;
+  margin-left: 10px;
+  text-transform: uppercase;
+  text-shadow: rgba(0, 0, 0, 0.9) 0px -1px 0px;
+}
+
+/* line 129, ../sass/style.sass */
+.clear {
+  clear: both;
+}
+
+/* line 133, ../sass/style.sass */
+button {
+  display: inline-block;
+  margin: 0 2px;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font: 14px/100% Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  padding: 0.5em 1em 0.55em;
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  -o-border-radius: 0.5em;
+  -ms-border-radius: 0.5em;
+  -khtml-border-radius: 0.5em;
+  border-radius: 0.5em;
+  -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px;
+  -o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px;
+}
+
+/* line 147, ../sass/style.sass */
+button:hover, input[type="submit"].button:hover {
+  text-decoration: none;
+}
+
+/* line 150, ../sass/style.sass */
+button:active, input[type="submit"].button:active {
+  position: relative;
+  top: 1px;
+}
+
+/* line 154, ../sass/style.sass */
+.set-time-button {
+  font-size: 25px;
+  font-weight: bold;
+  float: left;
+  padding: 0px;
+  -moz-border-radius-topright: 1em;
+  -webkit-border-top-right-radius: 1em;
+  -o-border-top-right-radius: 1em;
+  -ms-border-top-right-radius: 1em;
+  -khtml-border-top-right-radius: 1em;
+  border-top-right-radius: 1em;
+  -moz-border-radius-bottomright: 1em;
+  -webkit-border-bottom-right-radius: 1em;
+  -o-border-bottom-right-radius: 1em;
+  -ms-border-bottom-right-radius: 1em;
+  -khtml-border-bottom-right-radius: 1em;
+  border-bottom-right-radius: 1em;
+  -moz-border-radius-topleft: 0px;
+  -webkit-border-top-left-radius: 0px;
+  -o-border-top-left-radius: 0px;
+  -ms-border-top-left-radius: 0px;
+  -khtml-border-top-left-radius: 0px;
+  border-top-left-radius: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  -webkit-border-bottom-left-radius: 0px;
+  -o-border-bottom-left-radius: 0px;
+  -ms-border-bottom-left-radius: 0px;
+  -khtml-border-bottom-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin: 3px 0 0 -8px;
+  line-height: 75px;
+  width: 120px;
+}
+
+/* line 165, ../sass/style.sass */
+#minutes {
+  position: absolute;
+  left: 50%;
+  top: 155px;
+  width: 100px;
+  margin-left: -50px;
+  z-index: 4;
+}
+
+/* line 173, ../sass/style.sass */
 #time-muncher {
-  font-size: 60px;
+  font-size: 80px;
+  -moz-border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -o-border-radius: 150px;
+  -ms-border-radius: 150px;
+  -khtml-border-radius: 150px;
+  border-radius: 150px;
+  text-shadow: rgba(255, 255, 255, 0.8) 0 2px 0px;
+  width: 150px;
+  height: 150px;
+  padding: 0px 0px 30px 0px;
+  line-height: 120px;
+  font-weight: normal;
+  position: absolute;
+  left: 50%;
+  top: 50px;
+  margin-left: -75px;
+  z-index: 3;
+}
+
+/* line 188, ../sass/style.sass */
+.time-minus-button {
+  font-size: 25px;
+  font-weight: bold;
+  padding: 0px;
+  -moz-border-radius-topright: 0px;
+  -webkit-border-top-right-radius: 0px;
+  -o-border-top-right-radius: 0px;
+  -ms-border-top-right-radius: 0px;
+  -khtml-border-top-right-radius: 0px;
+  border-top-right-radius: 0px;
+  -moz-border-radius-bottomright: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+  -o-border-bottom-right-radius: 0px;
+  -ms-border-bottom-right-radius: 0px;
+  -khtml-border-bottom-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  -moz-border-radius-topleft: 1em;
+  -webkit-border-top-left-radius: 1em;
+  -o-border-top-left-radius: 1em;
+  -ms-border-top-left-radius: 1em;
+  -khtml-border-top-left-radius: 1em;
+  border-top-left-radius: 1em;
+  -moz-border-radius-bottomleft: 1em;
+  -webkit-border-bottom-left-radius: 1em;
+  -o-border-bottom-left-radius: 1em;
+  -ms-border-bottom-left-radius: 1em;
+  -khtml-border-bottom-left-radius: 1em;
+  border-bottom-left-radius: 1em;
+  line-height: 55px;
+  width: 50px;
+  position: absolute;
+  margin-left: -115px;
+  left: 50%;
+  top: 95px;
+  z-index: 2;
+}
+
+/* line 202, ../sass/style.sass */
+.time-plus-button {
+  font-size: 25px;
+  font-weight: bold;
+  padding: 0px;
+  -moz-border-radius-topleft: 0px;
+  -webkit-border-top-left-radius: 0px;
+  -o-border-top-left-radius: 0px;
+  -ms-border-top-left-radius: 0px;
+  -khtml-border-top-left-radius: 0px;
+  border-top-left-radius: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  -webkit-border-bottom-left-radius: 0px;
+  -o-border-bottom-left-radius: 0px;
+  -ms-border-bottom-left-radius: 0px;
+  -khtml-border-bottom-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  -moz-border-radius-topright: 1em;
+  -webkit-border-top-right-radius: 1em;
+  -o-border-top-right-radius: 1em;
+  -ms-border-top-right-radius: 1em;
+  -khtml-border-top-right-radius: 1em;
+  border-top-right-radius: 1em;
+  -moz-border-radius-bottomright: 1em;
+  -webkit-border-bottom-right-radius: 1em;
+  -o-border-bottom-right-radius: 1em;
+  -ms-border-bottom-right-radius: 1em;
+  -khtml-border-bottom-right-radius: 1em;
+  border-bottom-right-radius: 1em;
+  line-height: 55px;
+  width: 50px;
+  position: absolute;
+  left: 50%;
+  margin-left: 65px;
+  top: 95px;
+  z-index: 1;
+}
+
+/* line 216, ../sass/style.sass */
+.set-name-button {
+  font-size: 15px;
+  font-weight: bold;
+  position: absolute;
+  left: 50%;
+  margin-left: 65px;
+  top: 205px;
+  z-index: 1;
+}
+
+/* line 225, ../sass/style.sass */
+.white {
+  color: #333333;
+  text-shadow: rgba(255, 255, 255, 0.5) 0 1px 0px;
+  border: solid 1px #b7b7b7;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
+  background-image: -webkit-linear-gradient(#ffffff, #dddddd);
+  background-image: -moz-linear-gradient(#ffffff, #dddddd);
+  background-image: -o-linear-gradient(#ffffff, #dddddd);
+  background-image: -ms-linear-gradient(#ffffff, #dddddd);
+  background-image: linear-gradient(#ffffff, #dddddd);
+}
+
+/* line 231, ../sass/style.sass */
+.white:hover {
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ededed), color-stop(100%, #ededed));
+  background-image: -webkit-linear-gradient(#ededed, #ededed);
+  background-image: -moz-linear-gradient(#ededed, #ededed);
+  background-image: -o-linear-gradient(#ededed, #ededed);
+  background-image: -ms-linear-gradient(#ededed, #ededed);
+  background-image: linear-gradient(#ededed, #ededed);
+}
+
+/* line 234, ../sass/style.sass */
+.white:active {
+  color: #999999;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dddddd), color-stop(100%, #ffffff));
+  background-image: -webkit-linear-gradient(#dddddd, #ffffff);
+  background-image: -moz-linear-gradient(#dddddd, #ffffff);
+  background-image: -o-linear-gradient(#dddddd, #ffffff);
+  background-image: -ms-linear-gradient(#dddddd, #ffffff);
+  background-image: linear-gradient(#dddddd, #ffffff);
 }
