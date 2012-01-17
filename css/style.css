@@ -126,26 +126,54 @@ input {
   color: white;
   min-height: 50px;
 }
+/* line 46, ../sass/style.sass */
+#below-the-fold a {
+  color: white;
+}
 
-/* line 47, ../sass/style.sass */
+/* line 49, ../sass/style.sass */
 #history {
   padding: 20px 0 20px 5%;
   width: 40%;
   float: left;
 }
 
-/* line 52, ../sass/style.sass */
+/* line 54, ../sass/style.sass */
 #stats {
   padding: 20px 5% 20px 0;
   width: 40%;
   float: right;
 }
 
-/* line 60, ../sass/style.sass */
+/* line 59, ../sass/style.sass */
+#about {
+  padding: 20px 0 20px 5%;
+  width: 40%;
+  float: left;
+}
+
+/* line 64, ../sass/style.sass */
+#feedback {
+  padding: 20px 5% 20px 0;
+  width: 40%;
+  float: right;
+}
+
+/* line 69, ../sass/style.sass */
+p {
+  font-family: Georgia, serif;
+  font-size: 13px;
+  line-height: 20px;
+  margin: 5px 0;
+  color: #dddddd;
+  margin-bottom: 20px;
+}
+
+/* line 80, ../sass/style.sass */
 #task-list {
   margin: auto;
 }
-/* line 62, ../sass/style.sass */
+/* line 82, ../sass/style.sass */
 #task-list li {
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
@@ -153,7 +181,7 @@ input {
   text-align: center;
 }
 
-/* line 68, ../sass/style.sass */
+/* line 88, ../sass/style.sass */
 #prompt {
   font-size: 60px;
   font-family: "Montserrat", sans-serif;
@@ -166,7 +194,7 @@ input {
   text-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px, rgba(0, 0, 0, 0.5) 0px -1px 0px;
 }
 
-/* line 80, ../sass/style.sass */
+/* line 100, ../sass/style.sass */
 #control-surface {
   width: 700px;
   margin: auto;
@@ -175,7 +203,7 @@ input {
   position: relative;
 }
 
-/* line 87, ../sass/style.sass */
+/* line 107, ../sass/style.sass */
 #slide-holder {
   height: 300px;
   width: 2800px;
@@ -183,7 +211,7 @@ input {
   top: 0px;
   left: 0px;
 }
-/* line 93, ../sass/style.sass */
+/* line 113, ../sass/style.sass */
 #slide-holder .slide {
   width: 700px;
   float: left;
@@ -192,7 +220,7 @@ input {
   position: relative;
 }
 
-/* line 100, ../sass/style.sass */
+/* line 120, ../sass/style.sass */
 #thedoing {
   font-size: 40px;
   text-transform: lowercase;
@@ -220,7 +248,7 @@ input {
   z-index: 1;
 }
 
-/* line 118, ../sass/style.sass */
+/* line 138, ../sass/style.sass */
 .history-title {
   font-size: 9px;
   font-family: "Montserrat", sans-serif;
@@ -232,7 +260,7 @@ input {
   margin-top: 20px;
 }
 
-/* line 128, ../sass/style.sass */
+/* line 148, ../sass/style.sass */
 ul#history-list li {
   list-style: none;
   font-family: Georgia, serif;
@@ -240,7 +268,7 @@ ul#history-list li {
   line-height: 24px;
   text-align: center;
 }
-/* line 134, ../sass/style.sass */
+/* line 154, ../sass/style.sass */
 ul#history-list li .history-date {
   font-size: 10px;
   line-height: 24px;
@@ -248,7 +276,7 @@ ul#history-list li .history-date {
   color: #cccccc;
   font-family: Helvetica, Arial, sans-serif;
 }
-/* line 140, ../sass/style.sass */
+/* line 160, ../sass/style.sass */
 ul#history-list li .history-elapsed {
   font-size: 20px;
   margin-left: 20px;
@@ -256,17 +284,17 @@ ul#history-list li .history-elapsed {
   text-shadow: rgba(0, 0, 0, 0.9) 0px -1px 0px;
   font-family: Georgia, serif;
 }
-/* line 146, ../sass/style.sass */
+/* line 166, ../sass/style.sass */
 ul#history-list li .history-slash {
   color: #cccccc;
   font-size: 10px;
 }
-/* line 149, ../sass/style.sass */
+/* line 169, ../sass/style.sass */
 ul#history-list li .history-target {
   font-size: 10px;
   color: #dddddd;
 }
-/* line 152, ../sass/style.sass */
+/* line 172, ../sass/style.sass */
 ul#history-list li .history-ratio {
   font-size: 20px;
   margin-left: 20px;
@@ -275,13 +303,13 @@ ul#history-list li .history-ratio {
   font-family: Georgia, serif;
 }
 
-/* line 161, ../sass/style.sass */
+/* line 181, ../sass/style.sass */
 .time {
   font-family: Georgia, serif;
   font-weight: normal;
 }
 
-/* line 165, ../sass/style.sass */
+/* line 185, ../sass/style.sass */
 h2 {
   font-family: Georgia, sans-serif;
   font-style: italic;
@@ -289,7 +317,7 @@ h2 {
   margin-bottom: 20px;
 }
 
-/* line 171, ../sass/style.sass */
+/* line 191, ../sass/style.sass */
 h3 {
   font-size: 10px;
   font-family: "Montserrat", sans-serif;
@@ -301,7 +329,7 @@ h3 {
   text-transform: uppercase;
 }
 
-/* line 181, ../sass/style.sass */
+/* line 201, ../sass/style.sass */
 h4 {
   font-size: 12px;
   font-family: "Montserrat", sans-serif;
@@ -313,7 +341,7 @@ h4 {
   text-transform: uppercase;
 }
 
-/* line 191, ../sass/style.sass */
+/* line 211, ../sass/style.sass */
 h5 {
   font-family: Georgia, sans-serif;
   font-style: normal;
@@ -322,7 +350,7 @@ h5 {
   margin-top: 10px;
 }
 
-/* line 198, ../sass/style.sass */
+/* line 218, ../sass/style.sass */
 h6 {
   font-size: 15px;
   font-family: "Montserrat", sans-serif;
@@ -335,7 +363,7 @@ h6 {
   margin-bottom: 10px;
 }
 
-/* line 209, ../sass/style.sass */
+/* line 229, ../sass/style.sass */
 #logo {
   font-size: 10px;
   font-family: "Montserrat", sans-serif;
@@ -349,7 +377,7 @@ h6 {
   float: left;
 }
 
-/* line 221, ../sass/style.sass */
+/* line 241, ../sass/style.sass */
 #welcome {
   float: right;
   font-family: Georgia, serif;
@@ -362,12 +390,12 @@ h6 {
   margin-right: 15px;
 }
 
-/* line 232, ../sass/style.sass */
+/* line 252, ../sass/style.sass */
 .clear {
   clear: both;
 }
 
-/* line 235, ../sass/style.sass */
+/* line 255, ../sass/style.sass */
 .stat {
   font-family: Georgia, serif;
   color: white;
@@ -378,7 +406,7 @@ h6 {
   margin-top: 10px;
 }
 
-/* line 244, ../sass/style.sass */
+/* line 264, ../sass/style.sass */
 .stat-title {
   font-size: 9px;
   font-family: "Montserrat", sans-serif;
@@ -389,7 +417,7 @@ h6 {
   margin-bottom: 8px;
 }
 
-/* line 253, ../sass/style.sass */
+/* line 273, ../sass/style.sass */
 .stat-description {
   font-family: Georgia, serif;
   color: white;
@@ -401,14 +429,14 @@ h6 {
   margin-bottom: 20px;
 }
 
-/* line 263, ../sass/style.sass */
+/* line 283, ../sass/style.sass */
 #time-stats {
   float: left;
   width: 360px;
   margin-right: 60px;
 }
 
-/* line 268, ../sass/style.sass */
+/* line 288, ../sass/style.sass */
 #time-remaining {
   font-family: Georgia, serif;
   font-size: 140px;
@@ -417,25 +445,25 @@ h6 {
   margin-bottom: 50px;
 }
 
-/* line 275, ../sass/style.sass */
+/* line 295, ../sass/style.sass */
 #midtask-options {
   float: right;
   width: 235px;
 }
 
-/* line 279, ../sass/style.sass */
+/* line 299, ../sass/style.sass */
 #time-stats-left {
   float: left;
   width: 140px;
 }
 
-/* line 283, ../sass/style.sass */
+/* line 303, ../sass/style.sass */
 #time-stats-right {
   float: right;
   width: 140px;
 }
 
-/* line 288, ../sass/style.sass */
+/* line 308, ../sass/style.sass */
 button {
   display: inline-block;
   margin: 0 2px;
@@ -458,23 +486,23 @@ button {
   box-shadow: rgba(0, 0, 0, 0.4) 0 1px 2px;
 }
 
-/* line 302, ../sass/style.sass */
+/* line 322, ../sass/style.sass */
 button:hover, input[type="submit"].button:hover {
   text-decoration: none;
 }
 
-/* line 305, ../sass/style.sass */
+/* line 325, ../sass/style.sass */
 button:active, input[type="submit"].button:active {
   position: relative;
   top: 1px;
 }
 
-/* line 309, ../sass/style.sass */
+/* line 329, ../sass/style.sass */
 .small {
   font-size: 12px;
 }
 
-/* line 312, ../sass/style.sass */
+/* line 332, ../sass/style.sass */
 .set-time-button {
   font-size: 25px;
   font-weight: bold;
@@ -512,33 +540,57 @@ button:active, input[type="submit"].button:active {
   left: 50%;
   z-index: 2;
 }
-/* line 326, ../sass/style.sass */
+/* line 346, ../sass/style.sass */
 .set-time-button:active {
   position: absolute;
   top: 50px;
 }
 
-/* line 330, ../sass/style.sass */
+/* line 350, ../sass/style.sass */
+.logged-in {
+  display: none;
+}
+
+/* line 353, ../sass/style.sass */
+.logged-out {
+  display: none;
+}
+
+/* line 356, ../sass/style.sass */
+.timer-instruction {
+  position: absolute;
+  width: 150px;
+  text-align: center;
+  top: 200px;
+  left: 50%;
+  margin-left: -75px;
+}
+/* line 363, ../sass/style.sass */
+.timer-instruction h3 {
+  color: #74a3b9;
+}
+
+/* line 366, ../sass/style.sass */
 .catchphrase {
   position: absolute;
-  width: 300px;
+  width: 430px;
   text-align: center;
   top: 140px;
   left: 50%;
-  margin-left: -150px;
+  margin-left: -260px;
 }
 
-/* line 338, ../sass/style.sass */
+/* line 374, ../sass/style.sass */
 #minutes {
   position: absolute;
   left: 50%;
-  top: 155px;
+  top: 150px;
   width: 100px;
   margin-left: -50px;
   z-index: 4;
 }
 
-/* line 346, ../sass/style.sass */
+/* line 382, ../sass/style.sass */
 #time-muncher {
   font-size: 80px;
   -moz-border-radius: 150px;
@@ -558,9 +610,9 @@ button:active, input[type="submit"].button:active {
   top: 50px;
   margin-left: -75px;
   z-index: 3;
-  border: solid 1px #f0c683;
+  border: solid 2px #f0c683;
 }
-/* line 361, ../sass/style.sass */
+/* line 397, ../sass/style.sass */
 #time-muncher:hover {
   border: solid 2px #eaa12d;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
@@ -571,7 +623,7 @@ button:active, input[type="submit"].button:active {
   background-image: linear-gradient(#ffffff, #dddddd);
 }
 
-/* line 365, ../sass/style.sass */
+/* line 401, ../sass/style.sass */
 .time-minus-button {
   font-size: 25px;
   font-weight: bold;
@@ -609,7 +661,7 @@ button:active, input[type="submit"].button:active {
   z-index: 2;
 }
 
-/* line 379, ../sass/style.sass */
+/* line 415, ../sass/style.sass */
 .time-plus-button {
   font-size: 25px;
   font-weight: bold;
@@ -647,18 +699,18 @@ button:active, input[type="submit"].button:active {
   z-index: 1;
 }
 
-/* line 393, ../sass/style.sass */
+/* line 429, ../sass/style.sass */
 .set-name-button {
   font-weight: bold;
   position: absolute;
   left: 50%;
   width: 140px;
   margin-left: -70px;
-  top: 235px;
+  top: 245px;
   z-index: 1;
 }
 
-/* line 402, ../sass/style.sass */
+/* line 438, ../sass/style.sass */
 .midtask {
   width: 230px;
   margin: 15px auto;
@@ -666,7 +718,7 @@ button:active, input[type="submit"].button:active {
   line-height: 31px;
 }
 
-/* line 408, ../sass/style.sass */
+/* line 444, ../sass/style.sass */
 .logout {
   font-size: 8px;
   text-transform: uppercase;
@@ -675,7 +727,7 @@ button:active, input[type="submit"].button:active {
   margin-left: 3px;
 }
 
-/* line 416, ../sass/style.sass */
+/* line 452, ../sass/style.sass */
 .white {
   color: #333333;
   text-shadow: rgba(255, 255, 255, 0.5) 0 1px 0px;
@@ -688,7 +740,7 @@ button:active, input[type="submit"].button:active {
   background-image: linear-gradient(#ffffff, #dddddd);
 }
 
-/* line 422, ../sass/style.sass */
+/* line 458, ../sass/style.sass */
 .white:hover {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ededed), color-stop(100%, #ededed));
   background-image: -webkit-linear-gradient(#ededed, #ededed);
@@ -698,7 +750,7 @@ button:active, input[type="submit"].button:active {
   background-image: linear-gradient(#ededed, #ededed);
 }
 
-/* line 425, ../sass/style.sass */
+/* line 461, ../sass/style.sass */
 .white:active {
   color: #999999;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dddddd), color-stop(100%, #ffffff));
@@ -709,7 +761,7 @@ button:active, input[type="submit"].button:active {
   background-image: linear-gradient(#dddddd, #ffffff);
 }
 
-/* line 429, ../sass/style.sass */
+/* line 465, ../sass/style.sass */
 .orange {
   color: #333333;
   text-shadow: rgba(255, 255, 255, 0.5) 0 1px 0px;
@@ -722,7 +774,7 @@ button:active, input[type="submit"].button:active {
   background-image: linear-gradient(#ffffff, #f0c683);
 }
 
-/* line 435, ../sass/style.sass */
+/* line 471, ../sass/style.sass */
 .orange:hover {
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f0c683), color-stop(100%, #f0c683));
   background-image: -webkit-linear-gradient(#f0c683, #f0c683);
@@ -732,7 +784,7 @@ button:active, input[type="submit"].button:active {
   background-image: linear-gradient(#f0c683, #f0c683);
 }
 
-/* line 438, ../sass/style.sass */
+/* line 474, ../sass/style.sass */
 .orange:active {
   color: #999999;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f0c683), color-stop(100%, #ffffff));
@@ -743,7 +795,7 @@ button:active, input[type="submit"].button:active {
   background-image: linear-gradient(#f0c683, #ffffff);
 }
 
-/* line 442, ../sass/style.sass */
+/* line 478, ../sass/style.sass */
 #overlay {
   position: fixed;
   background: rgba(0, 0, 0, 0.8);
@@ -756,7 +808,7 @@ button:active, input[type="submit"].button:active {
   z-index: 100;
   display: none;
 }
-/* line 450, ../sass/style.sass */
+/* line 486, ../sass/style.sass */
 #overlay #overlay-wrap {
   width: 600px;
   position: relative;
@@ -766,7 +818,7 @@ button:active, input[type="submit"].button:active {
   margin-top: -250px;
   margin-left: -300px;
 }
-/* line 458, ../sass/style.sass */
+/* line 494, ../sass/style.sass */
 #overlay h1 {
   color: white;
   text-shadow: rgba(0, 0, 0, 0.9) 0px -1px 0px;
@@ -777,14 +829,14 @@ button:active, input[type="submit"].button:active {
   text-transform: lowercase;
   margin-bottom: 30px;
 }
-/* line 467, ../sass/style.sass */
+/* line 503, ../sass/style.sass */
 #overlay h2 {
   color: white;
   text-shadow: rgba(0, 0, 0, 0.9) 0px -1px 0px;
   text-align: center;
   margin-bottom: 40px;
 }
-/* line 472, ../sass/style.sass */
+/* line 508, ../sass/style.sass */
 #overlay .overlay-yes {
   font-size: 50px;
   -moz-border-radius: 10px;
@@ -800,7 +852,7 @@ button:active, input[type="submit"].button:active {
   height: 200px;
   width: 200px;
 }
-/* line 481, ../sass/style.sass */
+/* line 517, ../sass/style.sass */
 #overlay .overlay-no-top {
   font-size: 50px;
   -moz-border-radius: 10px;
@@ -818,12 +870,12 @@ button:active, input[type="submit"].button:active {
   width: 355px;
   text-align: left;
 }
-/* line 492, ../sass/style.sass */
+/* line 528, ../sass/style.sass */
 #overlay .overlay-no-top span {
   font-size: 17px;
   line-height: 90px;
 }
-/* line 495, ../sass/style.sass */
+/* line 531, ../sass/style.sass */
 #overlay .overlay-no-bottom {
   font-size: 50px;
   -moz-border-radius: 10px;
@@ -840,7 +892,7 @@ button:active, input[type="submit"].button:active {
   width: 355px;
   text-align: left;
 }
-/* line 505, ../sass/style.sass */
+/* line 541, ../sass/style.sass */
 #overlay .overlay-no-bottom span {
   font-size: 17px;
   line-height: 90px;

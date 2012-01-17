@@ -29,8 +29,9 @@
       if (GLOBAL_UID > 0) {
         DB_ON = true;
         UID = GLOBAL_UID;
+        $(".logged-in").fadeIn();
       } else {
-        $("#below-the-fold").html("");
+        $(".logged-out").fadeIn();
       }
       loopTime = 1000;
       interval = setInterval("Application.prototype.tick()", loopTime);
@@ -531,7 +532,7 @@
       opacity = 1.0;
       return $("#task-list").children().each(function() {
         $(this).css("opacity", opacity);
-        opacity -= 0.15;
+        opacity *= 0.5;
         return opacity = Math.max(0, opacity);
       });
     };

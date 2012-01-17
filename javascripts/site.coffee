@@ -39,8 +39,9 @@ class window.Application
 		if GLOBAL_UID > 0
 			DB_ON = true
 			UID = GLOBAL_UID
+			$(".logged-in").fadeIn()
 		else
-			$("#below-the-fold").html ""
+			$(".logged-out").fadeIn()
 		
 		#this is an ugly hack!
 		loopTime = 1000
@@ -495,7 +496,7 @@ class window.Application
 		opacity = 1.0
 		$("#task-list").children().each ->
 			$(this).css "opacity", opacity
-			opacity -= 0.15
+			opacity *= 0.5
 			opacity = Math.max 0, opacity
 			
 $ -> new Application

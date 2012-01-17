@@ -43,6 +43,8 @@ input
 	border-top: 3px solid #0d5577
 	color: white
 	min-height: 50px
+	a
+		color: white
 	
 #history
 	padding: 20px 0 20px 5%
@@ -54,6 +56,24 @@ input
 	width: 40%
 	float: right
 	
+#about
+	padding: 20px 0 20px 5%
+	width: 40%
+	float: left
+
+#feedback
+	padding: 20px 5% 20px 0
+	width: 40%
+	float: right
+
+p
+	font-family: Georgia, serif
+	font-size: 13px
+	line-height: 20px
+	margin: 5px 0
+	color: #DDD
+	margin-bottom: 20px
+
 	
 #fold-hold
 	
@@ -327,18 +347,34 @@ button:active, input[type="submit"].button:active
 		position: absolute
 		top: 50px
 
+.logged-in
+	display: none
+
+.logged-out
+	display: none
+
+.timer-instruction
+	position: absolute
+	width: 150px
+	text-align: center
+	top: 200px
+	left: 50%
+	margin-left: -75px
+	h3
+		color: #74a3b9
+
 .catchphrase
 	position: absolute
-	width: 300px
+	width: 430px
 	text-align: center
 	top: 140px
 	left: 50%
-	margin-left: -150px
+	margin-left: -260px
 	
 #minutes
 	position: absolute
 	left: 50%
-	top: 155px
+	top: 150px
 	width: 100px
 	margin-left: -50px
 	z-index: 4
@@ -357,7 +393,7 @@ button:active, input[type="submit"].button:active
 	top: 50px
 	margin-left: -75px
 	z-index: 3
-	border: solid 1px #f0c683
+	border: solid 2px #f0c683
 	&:hover
 		border: solid 2px #eaa12d
 		+background-image(linear-gradient(#fff, #ddd))
@@ -396,7 +432,7 @@ button:active, input[type="submit"].button:active
 	left: 50%
 	width: 140px
 	margin-left: -70px
-	top: 235px
+	top: 245px
 	z-index: 1
 
 .midtask

@@ -36,11 +36,12 @@
 		</div>
 		
 		<div id="header">
-			<div id="logo">Intentionq</div>
+			<div id="logo">Intentionq - BETA</div>
 			
-			<div id="welcome">Welcome Justin! <!--<button class="white logout">logout</button>--></div>
+			<div id="welcome">Welcome Stranger<!--<button class="white logout">logout</button>--></div>
 			<div class="clear"></div>
 		</div>
+		
 		<div class="wrap">
 			<div id="above-the-fold">
 				<div id="fold-hold">
@@ -51,7 +52,7 @@
 								<input id="thedoing" type="text"/>
 								<button class="set-time-button orange">SET</button>
 								<div class="clear"></div>
-								<div class="catchphrase"><h3>set an intention, be specific.</h3></div>
+								<div class="catchphrase"><h3>Set an intention for using the computer, be specific.</h3></div>
 							</div>
 							<div class="slide">
 								<h2>How long should that take?</h2>
@@ -60,6 +61,7 @@
 								<div id="minutes"><h3>minutes</h3></div>
 								<button class="time-minus-button orange">-</button>
 								<button class="time-plus-button orange">+</button>
+								<div class="timer-instruction"><h3>Click to set</h3></div>
 								
 								<button class="set-name-button small white">&larr; Change Intention</button>
 							</div>
@@ -81,9 +83,9 @@
 								</div>
 								
 								<div id="midtask-options">
-									<button class="complete-task-button white midtask">Finished Task</button>
-									<button class="minute-plus-button white midtask">Add Minute</button>
-									<button class="replace-task-button white midtask">Start New Task</button>
+									<button class="complete-task-button white midtask">All Done</button>
+									<button class="minute-plus-button white midtask">Minute Plus</button>
+									<button class="replace-task-button white midtask">New Intention</button>
 								</div>
 
 								<div class="clear"></div>
@@ -102,34 +104,53 @@
 			</div>
 		</div>
 		<div id="below-the-fold">
-			<div id="history">
-				<h6>my history</h6>
-				<div class="history-title">date / intention / actual time / target time / efficiency</div>
-				<ul id="history-list">
+			<div class="logged-out">
+				<div id="about">
+					<h6>about</h6>
+					<p>What would it look like to use the computer in a more intentional way; to only engage in tasks out of a conscious desire to do so? <em>Intentionq</em> aims to answer that question in the simplest way possible, by recording and tracking your intentions as you use the computer. 
+					<p>
+					We are currently testing and gathering feedback. A fully featured version of the app will be available soon, so please check back!
+					</p>
+				</div>
+				
+				<div id="feedback">
+					<h6>give feedback</h6>
+					<p>
+						Intentionq was built by <a href="http://www.michaelhighland.com">Michael Highland</a>  and <a href="http://relativecommotion.com/#3">Justin Broglie</a> during the 2012 PennApps 48 hour Hackathon. We're continuing to develop the app so your feedback is appreciated. Please address your comments to ego@michaelhighland.com!
+					</p>
+				</div>
+			
+			</div>
+			<div class="logged-in">	
+				<div id="history">
+					<h6>my history</h6>
+					<div class="history-title">date / intention / actual time / target time / efficiency</div>
+					<ul id="history-list">
 					
 				
-				</ul>
-			</div>
-			<div id="stats">
-				<h6>my stats</h6>
+					</ul>
+				</div>
+				<div id="stats">
+					<h6>my stats</h6>
 				
-				<div class="stat" id="stat-num-tasks"></div>
-				<div class="stat-title">total intentions</div>
-				<div class="stat-description">Get Some</div>
+					<div class="stat" id="stat-num-tasks"></div>
+					<div class="stat-title">total intentions</div>
+					<div class="stat-description">Get Some</div>
 				
 				
-				<div class="stat" id="stat-total-time"></div>
-				<div class="stat-title">total time spent</div>
-				<div class="stat-description">Hours:Minutes</div>
+					<div class="stat" id="stat-total-time"></div>
+					<div class="stat-title">total time spent</div>
+					<div class="stat-description">Hours:Minutes</div>
 				
-				<div class="stat" id="stat-avg-ratio"></div>
-				<div class="stat-title">average efficiency rating</div>
-				<div class="stat-description">Target Time / Actual Time</div>
+					<div class="stat" id="stat-avg-ratio"></div>
+					<div class="stat-title">average efficiency rating</div>
+					<div class="stat-description">Target Time / Actual Time</div>
 				
-				<div class="stat" id="stat-avg-accuracy"></div>
-				<div class="stat-title">know thyself</div>
-				<div class="stat-description">Accuracy of Your Self Perception</div>
+					<div class="stat" id="stat-avg-accuracy"></div>
+					<div class="stat-title">know thyself</div>
+					<div class="stat-description">Accuracy of Your Self Perception</div>
 				
+				</div>
 			</div>
 			<div class="clear"></div>
 		</div>
